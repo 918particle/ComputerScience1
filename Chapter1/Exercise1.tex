@@ -1,0 +1,79 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage[margin=1.5cm]{geometry}
+\usepackage{amsmath}
+
+\begin{document}
+\twocolumn
+
+\title{Chapter 1 In-Class Exercise: \texttt{print()} and Numeric Expressions}
+\author{Prof. Jordan C. Hanson}
+
+\maketitle
+
+\section{Printing Arithmetic in Python}
+
+\begin{enumerate}
+\item Python can perform arithmetic directly inside the \texttt{print()} function.  The multiplication operator in Python is the asterisk, \texttt{*}.
+\begin{itemize}
+
+\item Create a new Python file called \texttt{multi\_table.py}.  Begin by printing a title:
+\begin{verbatim}
+print("Multiplication Table")
+\end{verbatim}
+\vspace{0.25cm}
+
+\item We will arrange the products in rows and columns.  Begin by printing a row containing the column headings:
+\begin{verbatim}
+print("   ", 1, 2, 3, 4, 5)
+\end{verbatim}
+\vspace{0.25cm}
+
+\item Now print the first row.  Python should calculate each product rather than having you type the answers:
+\begin{verbatim}
+print(1, 1*1, 1*2, 1*3, 1*4, 1*5)
+\end{verbatim}
+\vspace{0.25cm}
+
+\item Run the program.  The numbers following the first \texttt{1} should be the products obtained by multiplying 1 by  1 through 5. \\ \vspace{0.25cm}
+
+\end{itemize}
+\end{enumerate}
+
+\section{In-Class Exercise}
+
+\begin{enumerate}
+
+\item Complete the program using only simple Python statements, arithmetic expressions, and the \texttt{print()} function.  Your program should produce a two-dimensional multiplication table for the first five positive integers:
+
+\begin{verbatim}
+Multiplication Table
+
+      1   2   3   4   5
+1     1   2   3   4   5
+2     2   4   6   8  10
+3     3   6   9  12  15
+4     4   8  12  16  20
+5     5  10  15  20  25
+\end{verbatim}
+
+\begin{itemize}
+
+\item Each row represents one integer from 1 through 5, and each column represents one integer from 1 through 5. \\ \vspace{0.25cm}
+
+\item Each entry in the table should be calculated as the product of its row number and column number.  For example, the entry in row 3 and column 4 should be calculated using
+\begin{verbatim}
+3 * 4
+\end{verbatim}
+rather than by typing \texttt{12} directly. \\ \vspace{0.25cm}
+
+\item Use one \texttt{print()} statement for each row of the multiplication table. \\ \vspace{0.25cm}
+
+\item Before writing the entire program, determine the five multiplication expressions needed to produce row 4. Sketch this \texttt{print()} statement below before beginning in Google CoLab. \\ \vspace{0.75cm}
+
+\item Run your program and compare its output with the example above.  Check that every row and column contains five products, and that the lower-right entry is the product of 5 and 5. \\ \vspace{0.5cm}
+
+\end{itemize}
+\end{enumerate}
+
+\end{document}
