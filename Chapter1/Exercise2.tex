@@ -1,0 +1,137 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage[margin=1.5cm]{geometry}
+\usepackage{amsmath}
+\usepackage{enumitem}
+
+\setlist{nosep,leftmargin=*}
+
+\begin{document}
+\twocolumn
+
+\title{In-Class Exercise: Python f-Strings and Unit Conversions}
+\author{Prof. Jordan C. Hanson}
+\date{}
+
+\maketitle
+
+\section{Formatted Strings}
+
+\begin{enumerate}
+
+\item Python \textbf{f-strings} allow numerical values to be inserted
+into strings and control how those values are displayed.
+
+\begin{itemize}
+
+\item Try the following statements in the interpreter:
+
+\begin{verbatim}
+x = 3.14159265
+print(f"{x:f}")
+print(f"{x:.4f}")
+print(f"{x:8.4f}")
+print(f"{x:08.4f}")
+\end{verbatim}
+
+The format \texttt{f} uses fixed-point notation,
+\texttt{.4f} displays four digits after the decimal,
+\texttt{8.4f} uses a field at least eight characters
+wide, and \texttt{08.4f} fills unused space with zeros.
+
+\item Integer values can be formatted in a similar way:
+
+\begin{verbatim}
+n = 12345678
+print(f"{n:d}")
+print(f"{n:,d}")
+print(f"{n:10d}")
+print(f"{n:010d}")
+\end{verbatim}
+
+Predict the output of each statement before running it.
+
+\end{itemize}
+\end{enumerate}
+
+\section{In-Class Exercise}
+
+\begin{enumerate}
+
+\item Write a Python program called
+\texttt{unit\_conversions.py} that calculates and prints a table of British-to-metric unit conversions. Use 1 ft. = 0.3048 m, 1 mile = 1.609344 km, 1 lb. = 0.45359237 kg, 1 stone = 14 lb., 1 kg = 1000 gm, and 1 mph = 1.609344 km/hr.  Perform the following conversions:
+
+\begin{center}
+\begin{tabular}{c|c}
+\textbf{Input} & \textbf{Convert to} \\ \hline
+125 ft & meters \\
+3.75 miles & kilometers \\
+175 lb & kilograms \\
+12 stone & kilograms \\
+2.5 lb & grams \\
+0.5 stone & grams \\
+65 mph & kilometers/hour
+\end{tabular}
+\end{center}
+
+\begin{itemize}
+
+\item Store each starting value in a variable and calculate each
+converted value using Python arithmetic.
+
+\item Distance and speed results must contain \textbf{3 significant
+figures}.  For these particular values, use the appropriate
+fixed-point precision:
+\begin{verbatim}
+38.1
+6.04
+105
+\end{verbatim}
+
+Thus, different rows may require \texttt{.1f}, \texttt{.2f},
+or \texttt{.0f}.
+
+\item Weight results must contain \textbf{4 significant figures}.
+For these particular values, the results should have forms such as
+
+\begin{verbatim}
+79.38
+76.20
+1134
+3175
+\end{verbatim}
+
+Again, select the appropriate number of decimal places.
+
+\item Use field widths so that the numerical results line up in
+columns.  For example,
+
+\begin{verbatim}
+print(f"Feet to meters    "
+      f"{feet:8.1f}"
+      f"{meters:10.1f}")
+\end{verbatim}
+
+\item Your final output should have the general form
+
+\begin{verbatim}
+Unit Conversion Table
+
+Conversion          Input     Result
+Feet to meters      125.0       38.1
+Miles to km          3.75       6.04
+Lb to kg            175.0      79.38
+Stone to kg          12.0      76.20
+Lb to grams           2.50       1134
+Stone to grams        0.50       3175
+Mph to km/hr          65.0        105
+\end{verbatim}
+
+Do not type the converted results directly into the
+\texttt{print()} statements.  Python must calculate each result
+before the f-string formats it.
+
+\end{itemize}
+\end{enumerate}
+
+\end{document}
