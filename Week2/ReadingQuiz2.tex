@@ -1,0 +1,163 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage[margin=1.5cm]{geometry}
+\usepackage{amsmath}
+
+\begin{document}
+\twocolumn
+
+\title{Chapter 1 Warm-Up: Python Lists and Tuples}
+\author{Prof. Jordan C. Hanson}
+
+\maketitle
+
+\section{Python Lists}
+
+\begin{enumerate}
+
+\item A Python \textbf{list} is an ordered collection of objects.  Lists are written using square brackets, \texttt{[ ]}, with the elements separated by commas.
+
+\begin{itemize}
+
+\item Begin by creating a list containing three student names:
+
+\begin{verbatim}
+students = ["Alice","Bob","Carlos"]
+\end{verbatim}
+
+\item Print the entire list:
+
+\begin{verbatim}
+print(students)
+\end{verbatim}
+
+\item Individual elements of a list can be accessed using their position, or \textit{index}.  Python begins counting at zero.  Try:
+
+\begin{verbatim}
+print(students[0])
+print(students[1])
+print(students[2])
+\end{verbatim}
+
+\item Which student is stored at index \texttt{0}?  Which student is stored at index \texttt{2}?
+
+\end{itemize}
+\end{enumerate}
+
+
+\section{Lists Inside Lists}
+
+\begin{enumerate}
+
+\item The elements of a list do not have to be simple strings or numbers.  A list can itself contain another list.
+
+Suppose we want to represent a course together with its students.
+
+\begin{itemize}
+
+\item Create a list containing the name of a course and the list of students:
+
+\begin{verbatim}
+course = ["Python Programming",students]
+\end{verbatim}
+
+\item Print the complete object:
+
+\begin{verbatim}
+print(course)
+\end{verbatim}
+
+\item The first element of \texttt{course} is the course name:
+
+\begin{verbatim}
+print(course[0])
+\end{verbatim}
+
+\item The second element is itself a list containing the students:
+
+\begin{verbatim}
+print(course[1])
+\end{verbatim}
+\vspace{0.25cm}
+
+\item Because \texttt{course[1]} is a list, we can select an element from that list as well.  Try:
+
+\begin{verbatim}
+print(course[1][0])
+print(course[1][2])
+\end{verbatim}
+
+\end{itemize}
+\end{enumerate}
+
+
+\section{Python Tuples}
+
+\begin{enumerate}
+
+\item A Python \textbf{tuple} is another ordered collection of objects.  Tuples are similar to lists, but are written using parentheses, \texttt{( )}.
+
+\begin{itemize}
+
+\item Create two simple course lists:
+
+\begin{verbatim}
+course1 = ["Python Programming",["Alice", "Bob"]]
+course2 = ["Calculus I",["Diana", "Ethan"]]
+\end{verbatim}
+
+\item Combine the two course lists into a tuple:
+
+\begin{verbatim}
+courses = (course1,course2)
+\end{verbatim}
+
+\item Print the complete tuple:
+
+\begin{verbatim}
+print(courses)
+\end{verbatim}
+
+\item Access the first and second course using:
+
+\begin{verbatim}
+print(courses[0])
+print(courses[1])
+\end{verbatim}
+\vspace{0.25cm}
+
+\item Print only the name of the second course:
+
+\begin{verbatim}
+print(courses[1][0])
+\end{verbatim}
+\vspace{0.25cm}
+
+\item Print the name of the first student enrolled in the second course:
+
+\begin{verbatim}
+print(courses[1][1][0])
+\end{verbatim}
+\vspace{0.25cm}
+
+\end{itemize}
+\end{enumerate}
+
+
+\section{Warm-Up Exercise}
+
+Construct a Python object representing two laboratory sections.  Each laboratory section should contain a course name and a list of three students. Use the following information:
+
+\begin{verbatim}
+Physics Laboratory
+  Maya
+  Noah
+  Olivia
+
+Computer Laboratory
+  Liam
+  Sophia
+  Ethan
+\end{verbatim}
+
+\end{document}

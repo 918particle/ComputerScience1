@@ -1,0 +1,180 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage[margin=1.5cm]{geometry}
+\usepackage{amsmath}
+\usepackage{enumitem}
+
+\setlist{nosep,leftmargin=*}
+
+\begin{document}
+\twocolumn
+
+\title{Chapter 4 In-Class Exercise: Sorting Math Students}
+\author{Prof. Jordan C. Hanson}
+\date{}
+
+\maketitle
+
+\section{Student Data}
+
+\begin{enumerate}
+
+\item A placement test assigns each student a math score from
+0 through 5.  Begin with the following list of tuples:
+
+\begin{verbatim}
+students = [
+    ("Maya", 5),
+    ("Noah", 1),
+    ("Olivia", 3),
+    ("Liam", 4),
+    ("Sophia", 2),
+    ("Ethan", 0),
+    ("Ava", 5),
+    ("Lucas", 1),
+    ("Emma", 3),
+    ("Mateo", 4)
+]
+\end{verbatim}
+
+Each element of \texttt{students} is a tuple containing
+
+\begin{verbatim}
+(student_name, math_score)
+\end{verbatim}
+
+For example,
+
+\begin{verbatim}
+print(students[0][0])
+print(students[0][1])
+\end{verbatim}
+
+prints the first student's name and score.
+
+\end{enumerate}
+
+
+\section{Course Rosters}
+
+\begin{enumerate}
+
+\item Students are assigned according to
+
+\[
+\begin{array}{c|c}
+\textbf{Score} & \textbf{Course} \\ \hline
+4,5 & \text{Calculus} \\
+2,3 & \text{Trigonometry} \\
+0,1 & \text{Algebra}
+\end{array}
+\]
+
+Create three course lists.  Each list contains the course
+name followed by an initially empty student list:
+
+\begin{verbatim}
+algebra = [
+    "Algebra", []
+]
+
+trigonometry = [
+    "Trigonometry", []
+]
+
+calculus = [
+    "Calculus", []
+]
+\end{verbatim}
+
+Combine the three lists into one tuple:
+
+\begin{verbatim}
+math_courses = (
+    algebra,
+    trigonometry,
+    calculus
+)
+\end{verbatim}
+
+The final structure will therefore have the form
+
+\begin{verbatim}
+(
+  ["Algebra", [students...]],
+  ["Trigonometry", [students...]],
+  ["Calculus", [students...]]
+)
+\end{verbatim}
+
+\end{enumerate}
+
+
+\section{Conditional Sorting}
+
+\begin{enumerate}
+
+\item Use conditional logic to place each student into the
+correct course.  Begin with the first student:
+
+\begin{verbatim}
+name = students[0][0]
+score = students[0][1]
+
+if score >= 4:
+    calculus[1].append(name)
+elif score >= 2:
+    trigonometry[1].append(name)
+else:
+    algebra[1].append(name)
+\end{verbatim}
+
+The method
+
+\begin{verbatim}
+.append(name)
+\end{verbatim}
+
+adds the student's name to the end of the appropriate
+student list.
+
+\begin{itemize}
+
+\item Repeat the conditional statement for
+\texttt{students[1]} through \texttt{students[9]}.
+Do not use a loop yet.
+
+\item For each student, extract the name and score first,
+then use one \texttt{if}-\texttt{elif}-\texttt{else}
+statement to make the placement.
+
+\item When all ten students have been processed, print
+
+\begin{verbatim}
+print(math_courses)
+\end{verbatim}
+
+and verify that every student appears exactly once.
+
+\end{itemize}
+
+\end{enumerate}
+
+
+\section{Check Your Result}
+
+\begin{enumerate}
+
+\item Without changing the original \texttt{students} data,
+verify the following:
+
+\begin{itemize}
+\item Students with scores 0 or 1 appear only in Algebra.
+\item Students with scores 2 or 3 appear only in Trigonometry.
+\item Students with scores 4 or 5 appear only in Calculus.
+\item The three student lists contain a total of 10 names.
+\end{itemize}
+
+\end{enumerate}
+
+\end{document}

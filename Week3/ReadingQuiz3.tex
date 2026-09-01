@@ -1,0 +1,155 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage[margin=1.5cm]{geometry}
+\usepackage{amsmath}
+
+\begin{document}
+\twocolumn
+
+\title{Chapter 4 Warm-Up: Boolean Logic and Decisions}
+\author{Prof. Jordan C. Hanson}
+
+\maketitle
+
+\section{Boolean Variables}
+
+\begin{enumerate}
+
+\item A Boolean variable can have one of two values:
+\texttt{True} or \texttt{False}.  Comparisons also produce
+Boolean values.
+
+\begin{itemize}
+
+\item Enter the following statements in the interpreter:
+
+\begin{verbatim}
+is_raining = False
+temperature = 72
+
+print(is_raining)
+print(temperature > 70)
+print(temperature == 72)
+print(temperature < 60)
+\end{verbatim}
+
+\end{itemize}
+\end{enumerate}
+
+
+\section{Boolean Operations and Decisions}
+
+\begin{enumerate}
+
+\item Python combines Boolean conditions using
+\texttt{and}, \texttt{or}, and \texttt{not}.
+
+\begin{itemize}
+
+\item Predict the values of
+
+\begin{verbatim}
+print(True and True)
+print(True and False)
+print(True or False)
+print(False or False)
+print(not True)
+\end{verbatim}
+
+\item Now write a short program that collects information
+about a student:
+
+\begin{verbatim}
+score = int(input("Score: "))
+
+submitted = input(
+    "Submitted? yes/no: ") == "yes"
+
+attendance = input(
+    "Attendance OK? yes/no: ") == "yes"
+\end{verbatim}
+
+Create the Boolean variable
+
+\begin{verbatim}
+ready = submitted and attendance
+\end{verbatim}
+
+and use it in the following chained decision:
+
+\begin{verbatim}
+if score >= 90 and ready:
+    print("Excellent")
+elif score >= 70 and ready:
+    print("Pass")
+elif not submitted or not attendance:
+    print("Incomplete")
+else:
+    print("Revise")
+\end{verbatim}
+
+Run the program several times.  Find inputs that cause
+each of the four branches to execute.
+
+\end{itemize}
+\end{enumerate}
+
+\section{Truth-Table Exercise}
+
+\begin{enumerate}
+
+\item Associativity changes the grouping of operands, while
+commutativity changes their order.  We will test whether these
+changes affect a Boolean expression.  Consider the four expressions
+
+\begin{verbatim}
+E1 = (p and q) and (not r)
+E2 = p and (q and (not r))
+E3 = (not r) and (q and p)
+E4 = p and q and not r
+\end{verbatim}
+
+Here, \texttt{E2} changes the association of the
+\texttt{and} operations, \texttt{E3} changes both grouping
+and ordering, and \texttt{E4} relies on Python's precedence
+rules.
+
+\begin{itemize}
+
+\item There are eight possible combinations of three Boolean
+variables.  Complete the truth table:
+
+\begin{center}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{ccc|cccc}
+$p$ & $q$ & $r$ &
+E1 & E2 & E3 & E4 \\ \hline
+T & T & T & & & & \\
+T & T & F & & & & \\
+T & F & T & & & & \\
+T & F & F & & & & \\
+F & T & T & & & & \\
+F & T & F & & & & \\
+F & F & T & & & & \\
+F & F & F & & & &
+\end{tabular}
+\end{center}
+
+\item Check the table using Python.  For each row, assign
+values to \texttt{p}, \texttt{q}, and \texttt{r}, calculate
+all four expressions, and print the result.
+
+\item Compare the four result columns.  Does changing the
+\textbf{association} of the \texttt{and} operations change
+the truth value?
+
+\item Does changing the \textbf{order} of the Boolean
+variables change the truth value?
+
+\item Based on your truth table, what evidence do you have
+that Boolean \texttt{and} is associative and commutative?
+
+\end{itemize}
+\end{enumerate}
+
+\end{document}
