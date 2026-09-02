@@ -1,0 +1,332 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage[margin=1.5cm]{geometry}
+\usepackage{amsmath}
+
+\begin{document}
+\twocolumn
+
+\title{Problem Set 2: Loops and Conditional Logic}
+\author{Prof. Jordan C. Hanson}
+
+\maketitle
+
+\section{Exercise 1: Sorting with a For Loop}
+
+\begin{enumerate}
+
+\item A placement test assigns each student a math score from
+0 through 5.  Students are assigned to courses according to
+
+\[
+\begin{array}{c|c}
+\textbf{Score} & \textbf{Course} \\ \hline
+4,5 & \text{Calculus} \\
+2,3 & \text{Trigonometry} \\
+0,1 & \text{Algebra}
+\end{array}
+\]
+
+Begin with the following list of student tuples:
+
+\begin{verbatim}
+students = [
+    ("Aaliyah", 4),
+    ("Ben", 1),
+    ("Camila", 3),
+    ("Diego", 5),
+    ("Elena", 2),
+    ("Felix", 0),
+    ("Grace", 3),
+    ("Hector", 4),
+    ("Isabel", 1),
+    ("Jamal", 5),
+    ("Keira", 0),
+    ("Luis", 2)
+]
+\end{verbatim}
+
+\begin{itemize}
+
+\item Create the same three course structures used in the
+in-class exercise:
+
+\begin{verbatim}
+algebra = ["Algebra", []]
+
+trigonometry = [
+    "Trigonometry", []
+]
+
+calculus = ["Calculus", []]
+\end{verbatim}
+
+Then combine them into the tuple
+
+\begin{verbatim}
+math_courses = (
+    algebra,
+    trigonometry,
+    calculus
+)
+\end{verbatim}
+
+\item Previously, the conditional statement had to be
+repeated once for every student.  This time, use a
+\texttt{for} loop to examine each tuple in
+\texttt{students}:
+
+\begin{verbatim}
+for student in students:
+    name = student[0]
+    score = student[1]
+
+    # conditional logic goes here
+\end{verbatim}
+
+Complete the loop using one
+\texttt{if}-\texttt{elif}-\texttt{else} statement.
+
+\item Use \texttt{append()} inside the conditional statement
+to place the student's name into the correct course.
+Do not manually type any student name into a course roster.
+
+\item After the loop finishes, print
+
+\begin{verbatim}
+print(math_courses)
+\end{verbatim}
+
+and verify that all 12 students appear exactly once.
+
+\item Print the three rosters separately using indexing:
+
+\begin{verbatim}
+print(math_courses[0])
+print(math_courses[1])
+print(math_courses[2])
+\end{verbatim}
+
+\end{itemize}
+\end{enumerate}
+
+
+\section{Exercise 2: Sorting with a While Loop}
+
+\begin{enumerate}
+
+\item Repeat the placement problem from Exercise 1, but this
+time use a \texttt{while} loop instead of a
+\texttt{for} loop.
+
+Begin with new empty course lists:
+
+\begin{verbatim}
+algebra2 = ["Algebra", []]
+
+trigonometry2 = [
+    "Trigonometry", []
+]
+
+calculus2 = ["Calculus", []]
+\end{verbatim}
+
+and create
+
+\begin{verbatim}
+math_courses2 = (
+    algebra2,
+    trigonometry2,
+    calculus2
+)
+\end{verbatim}
+
+\begin{itemize}
+
+\item A \texttt{while} loop requires a variable that keeps
+track of which student is being processed.  Begin with
+
+\begin{verbatim}
+i = 0
+\end{verbatim}
+
+and construct a loop having the form
+
+\begin{verbatim}
+while i < 12:
+    name = students[i][0]
+    score = students[i][1]
+
+    # conditional logic goes here
+
+    i = i + 1
+\end{verbatim}
+
+\item Complete the same
+\texttt{if}-\texttt{elif}-\texttt{else} decision used in
+Exercise 1.
+
+\item Explain why
+
+\begin{verbatim}
+i = i + 1
+\end{verbatim}
+
+must occur during every pass through the loop.  What would
+happen if this statement were omitted?
+
+\item Print \texttt{math\_courses2}.  The student names in
+the three rosters should be identical to those obtained in
+Exercise 1.
+
+\item Compare the two approaches.  In the \texttt{for} loop,
+what variable represents the current student?  In the
+\texttt{while} loop, what variable determines which student
+is selected from the list?
+
+\end{itemize}
+\end{enumerate}
+
+
+\section{Exercise 3: Math Placement System}
+
+\begin{enumerate}
+
+\item Write a program called
+\texttt{math\_placement.py} that collects student information
+from the user and automatically constructs the three course
+rosters.
+
+The program will process exactly 10 students.  You may
+assume that every score entered by the user is an integer
+from 0 through 5.
+
+\begin{itemize}
+
+\item Begin with an empty list:
+
+\begin{verbatim}
+students = []
+\end{verbatim}
+
+Use a \texttt{while} loop and the \texttt{input()} function
+to collect the name and math score of each student.
+
+A useful starting structure is
+
+\begin{verbatim}
+i = 0
+
+while i < 10:
+    name = input("Student name: ")
+    score = int(input("Math score: "))
+
+    # store this student
+
+    i = i + 1
+\end{verbatim}
+
+\item Store each student as a tuple of the form
+
+\begin{verbatim}
+(name, score)
+\end{verbatim}
+
+and append that tuple to the \texttt{students} list.
+
+After the loop finishes, the structure of
+\texttt{students} should be
+
+\begin{verbatim}
+[
+    (name1, score1),
+    (name2, score2),
+    ...
+    (name10, score10)
+]
+\end{verbatim}
+
+\item Create the three initially empty course structures:
+
+\begin{verbatim}
+algebra = ["Algebra", []]
+
+trigonometry = [
+    "Trigonometry", []
+]
+
+calculus = ["Calculus", []]
+\end{verbatim}
+
+and combine them into
+
+\begin{verbatim}
+math_courses = (
+    algebra,
+    trigonometry,
+    calculus
+)
+\end{verbatim}
+
+\item Use a \texttt{for} loop to process the completed
+\texttt{students} list.  For every student, extract the name
+and score and use conditional logic to apply the placement
+rules
+
+\[
+\begin{array}{c|c}
+0,1 & \text{Algebra} \\
+2,3 & \text{Trigonometry} \\
+4,5 & \text{Calculus}.
+\end{array}
+\]
+
+The conditional logic, rather than manually written student
+names, must populate the three rosters.
+
+\item After all students have been sorted, print a final
+report having the general form
+
+\begin{verbatim}
+Math Placement Report
+
+Algebra:
+['student1', 'student2', ...]
+
+Trigonometry:
+['student3', 'student4', ...]
+
+Calculus:
+['student5', 'student6', ...]
+\end{verbatim}
+
+Use the course names and student lists already stored inside
+\texttt{math\_courses}; do not create a second copy of the
+roster information just for printing.
+
+\item Run the program with 10 test students.  Your test data
+must include at least one score from each of the three
+placement ranges.
+
+Verify that
+
+\begin{itemize}
+\item every entered student appears in exactly one course,
+\item scores 0--1 are assigned to Algebra,
+\item scores 2--3 are assigned to Trigonometry, and
+\item scores 4--5 are assigned to Calculus.
+\end{itemize}
+
+\item Your completed program should use only concepts we
+have used in class: variables, strings and integers,
+\texttt{input()}, \texttt{print()}, lists, tuples,
+indexing, \texttt{append()}, conditional statements, and
+simple \texttt{for} and \texttt{while} loops.
+
+Do not use dictionaries, functions, list comprehensions, or
+other Python structures that have not yet been introduced.
+
+\end{itemize}
+\end{enumerate}
+
+\end{document}

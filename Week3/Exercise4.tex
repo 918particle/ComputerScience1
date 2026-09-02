@@ -1,0 +1,194 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage[margin=1.5cm]{geometry}
+\usepackage{amsmath}
+\usepackage{enumitem}
+
+\setlist{nosep,leftmargin=*}
+
+\begin{document}
+\twocolumn
+
+\title{Chapter 5 In-Class Exercise: Searching a Matrix}
+\author{Prof. Jordan C. Hanson}
+\date{}
+
+\maketitle
+
+\section{Matrices Using Lists}
+
+\begin{enumerate}
+
+\item A two-dimensional array of values can be represented in Python
+using a \textbf{list of lists}.  Each inner list represents one row.  Begin with the matrix
+
+\[
+A =
+\begin{bmatrix}
+4 & 7 & 2 & 9 \\
+1 & 5 & 8 & 3 \\
+6 & 0 & 4 & 7
+\end{bmatrix}.
+\]
+
+Represent this matrix in Python using
+
+\begin{verbatim}
+A = [
+    [4, 7, 2, 9],
+    [1, 5, 8, 3],
+    [6, 0, 4, 7]
+]
+\end{verbatim}
+
+\begin{itemize}
+
+\item The first index selects a row and the second index selects a column.  Try
+
+\begin{verbatim}
+print(A[0][0])
+print(A[1][2])
+print(A[2][3])
+\end{verbatim}
+
+\item Remember that Python begins counting at zero.  Therefore, \texttt{A[1][2]} is the element in the second row and third column.
+
+\end{itemize}
+
+\end{enumerate}
+
+
+\section{Nested Loops}
+
+\begin{enumerate}
+
+\item A loop inside another loop is called a \textbf{nested loop}.  The outer loop can move through the rows, while the inner loop moves through the columns. Use
+
+\begin{verbatim}
+for row in range(3):
+    for column in range(4):
+        print(A[row][column])
+\end{verbatim}
+
+\begin{itemize}
+
+\item How many times does the outer loop execute?
+\item How many times does the inner loop execute?
+\item How many total matrix elements are printed?
+\item Modify the print statement to display the row, column, and value:
+
+\begin{verbatim}
+print(row, column,
+      A[row][column])
+\end{verbatim}
+
+\end{itemize}
+
+\end{enumerate}
+
+
+\section{Searching for a Value}
+
+\begin{enumerate}
+
+\item Now search the matrix for a particular value. Begin with
+
+\begin{verbatim}
+target = 7
+\end{verbatim}
+
+Use nested loops and an \texttt{if} statement:
+
+\begin{verbatim}
+for row in range(3):
+    for column in range(4):
+
+        if A[row][column] == target:
+            print("Found at",
+                  row, column)
+\end{verbatim}
+
+\begin{itemize}
+
+\item Run the program.  How many times does the value \texttt{7} occur?
+\item At which row and column indices does it occur?
+\item Change
+
+\begin{verbatim}
+target = 7
+\end{verbatim}
+
+to several other values and repeat the search.
+
+\end{itemize}
+
+\end{enumerate}
+
+
+\section{In-Class Exercise}
+
+\begin{enumerate}
+
+\item Create the matrix
+
+\[
+B =
+\begin{bmatrix}
+12 & 5 & 8 & 3 & 11 \\
+7 & 14 & 2 & 9 & 6 \\
+4 & 10 & 13 & 5 & 1 \\
+8 & 3 & 6 & 12 & 7
+\end{bmatrix}.
+\]
+
+Represent it as a list of four lists.
+
+\begin{itemize}
+
+\item Ask the user for an integer to search for:
+
+\begin{verbatim}
+target = int(input(
+    "Value to search for: "))
+\end{verbatim}
+
+\item Use nested \texttt{for} loops to search every row and column.
+
+\item Whenever the value is found, print
+
+\begin{verbatim}
+Value found at row __ column __
+\end{verbatim}
+
+using the actual row and column indices.
+
+\item Create the Boolean variable
+
+\begin{verbatim}
+found = False
+\end{verbatim}
+
+before beginning the search. Whenever a match occurs, change it to
+
+\begin{verbatim}
+found = True
+\end{verbatim}
+
+\item After both loops have finished, use
+
+\begin{verbatim}
+if not found:
+    print("Value not found")
+\end{verbatim}
+
+so that the program also correctly handles values that are not
+inside the matrix.
+
+\item Test your program using one value that occurs once, one value
+that occurs more than once, and one value that does not occur.
+
+\end{itemize}
+
+\end{enumerate}
+
+\end{document}

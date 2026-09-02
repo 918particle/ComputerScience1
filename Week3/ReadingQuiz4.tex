@@ -1,0 +1,188 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage[margin=1.5cm]{geometry}
+\usepackage{amsmath}
+\usepackage{enumitem}
+
+\setlist{nosep,leftmargin=*}
+
+\begin{document}
+\twocolumn
+
+\title{Chapter 5 Warm-Up: Python \texttt{for} and \texttt{while} Loops}
+\author{Prof. Jordan C. Hanson}
+\date{}
+
+\maketitle
+
+\section{Student Data}
+
+\begin{enumerate}
+
+\item A list can contain tuples representing individual students.
+Each tuple below contains a student's name, student ID, and math
+placement score:
+
+\begin{verbatim}
+students = [
+ ("Maya", 20681001, 5),
+ ("Noah", 20681002, 1),
+ ("Olivia", 20681003, 3),
+ ("Liam", 20681004, 4),
+ ("Sophia", 20681005, 2)
+]
+\end{verbatim}
+
+Each student therefore has the form
+
+\begin{verbatim}
+(name, student_id, score)
+\end{verbatim}
+
+Try
+
+\begin{verbatim}
+print(students[0])
+print(students[0][0])
+print(students[0][1])
+print(students[0][2])
+\end{verbatim}
+
+Identify which expression produces the student's name,
+ID, and math score.
+
+\end{enumerate}
+
+
+\section{\texttt{for} Loops}
+
+\begin{enumerate}
+
+\item A \texttt{for} loop performs the same operation on
+each element of a collection.  Enter
+
+\begin{verbatim}
+for student in students:
+    print(student)
+\end{verbatim}
+
+The variable \texttt{student} refers to one tuple during
+each pass through the loop.
+
+\begin{itemize}
+
+\item Modify the loop to extract all three values:
+
+\begin{verbatim}
+for student in students:
+    name = student[0]
+    student_id = student[1]
+    score = student[2]
+    print(name, student_id, score)
+\end{verbatim}
+
+\item Add conditional logic inside the loop so that each
+student's recommended course is printed:
+
+\begin{verbatim}
+if score >= 4:
+    print("Calculus")
+elif score >= 2:
+    print("Trigonometry")
+else:
+    print("Algebra")
+\end{verbatim}
+
+\end{itemize}
+
+\end{enumerate}
+
+
+\section{\texttt{while} Loops}
+
+\begin{enumerate}
+
+\item A \texttt{while} loop repeats while a Boolean
+condition remains \texttt{True}.  An index can be used
+to select one student at a time:
+
+\begin{verbatim}
+i = 0
+
+while i < 5:
+    print(students[i])
+    i = i + 1
+\end{verbatim}
+
+\begin{itemize}
+
+\item What value does \texttt{i} have during the first
+pass through the loop?  During the last pass?
+
+\item What would happen if
+
+\begin{verbatim}
+i = i + 1
+\end{verbatim}
+
+were omitted?
+
+\item Modify the loop so that it prints only each
+student's name and student ID.
+
+\end{itemize}
+
+\end{enumerate}
+
+
+\section{Warm-Up Exercise}
+
+\begin{enumerate}
+
+\item Create the following initially empty course structures:
+
+\begin{verbatim}
+algebra = ["Algebra", []]
+trig = ["Trigonometry", []]
+calculus = ["Calculus", []]
+
+math_courses = (
+    algebra,
+    trig,
+    calculus
+)
+\end{verbatim}
+
+Use a \texttt{for} loop to examine every student in
+\texttt{students}.  Use an \texttt{if}-\texttt{elif}-\texttt{else} statement to determine the correct course. Instead of adding only the student's name, add a tuple containing the student's name and ID:
+
+\begin{verbatim}
+(name, student_id)
+\end{verbatim}
+
+For example,
+
+\begin{verbatim}
+calculus[1].append(
+    (name, student_id)
+)
+\end{verbatim}
+
+When the loop is finished, print
+
+\begin{verbatim}
+print(math_courses)
+\end{verbatim}
+
+and verify that
+
+\begin{itemize}
+\item scores 0--1 are placed in Algebra,
+\item scores 2--3 are placed in Trigonometry,
+\item scores 4--5 are placed in Calculus, and
+\item every roster contains both student names and IDs.
+\end{itemize}
+
+\end{enumerate}
+
+\end{document}
