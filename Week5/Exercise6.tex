@@ -1,0 +1,175 @@
+\documentclass{article}
+\usepackage[margin=1.5cm]{geometry}
+\usepackage{amsmath}
+\usepackage{enumitem}
+
+\setlist{nosep,leftmargin=*}
+
+\begin{document}
+\twocolumn
+
+\title{Chapter 6 In-Class Exercise: Building a Fourier-Series Program}
+\author{Prof. Jordan C. Hanson}
+\date{}
+
+\maketitle
+
+\section{Step 1: One Fourier Term}
+
+\begin{enumerate}
+
+\item The sawtooth approximation is
+
+\[
+f_N(x)=
+2\sum_{n=1}^{N}
+\frac{(-1)^{n+1}}{n}\sin(nx).
+\]
+
+Begin by writing a function that evaluates only the
+$n$-th term:
+
+\begin{verbatim}
+import numpy as np
+import matplotlib.pyplot as plt
+
+def fourier_term(x, n):
+    term = 2 * (-1)**(n + 1)
+    term = term * np.sin(n*x) / n
+    return term
+\end{verbatim}
+
+Test the function:
+
+\begin{verbatim}
+x = np.pi / 4
+
+print(fourier_term(x, 1))
+print(fourier_term(x, 2))
+print(fourier_term(x, 3))
+\end{verbatim}
+
+\begin{itemize}
+\item What are the two parameters of the function?
+\item What changes when \texttt{n} changes?
+\end{itemize}
+
+\end{enumerate}
+
+
+\section{Step 2: Sum the Terms}
+
+\begin{enumerate}
+
+\item Write a second function that calls
+\texttt{fourier\_term()} repeatedly and adds the results:
+
+\begin{verbatim}
+def sawtooth(x, N):
+    total = 0.0
+
+    for n in range(1, N + 1):
+        total = total + \
+                fourier_term(x, n)
+
+    return total
+\end{verbatim}
+
+Test the function at one point:
+
+\begin{verbatim}
+x = np.pi / 4
+
+print(sawtooth(x, 1))
+print(sawtooth(x, 5))
+print(sawtooth(x, 20))
+\end{verbatim}
+
+\begin{itemize}
+\item Which function performs one calculation?
+\item Which function controls the summation?
+\item Why does \texttt{sawtooth()} call
+\texttt{fourier\_term()} inside a loop?
+\end{itemize}
+
+\end{enumerate}
+
+
+\section{Step 3: Plot the Series}
+
+\begin{enumerate}
+
+\item Create a third function whose job is only to plot the
+approximation:
+
+\begin{verbatim}
+def plot_series(x, N):
+    y = sawtooth(x, N)
+
+    plt.plot(x, y,
+             label=f"N = {N}")
+\end{verbatim}
+
+This function does not calculate the Fourier terms directly.
+Instead, it calls \texttt{sawtooth()}, which in turn calls
+\texttt{fourier\_term()}.
+
+\end{enumerate}
+
+
+\section{Step 4: Put It Together}
+
+\begin{enumerate}
+
+\item At the bottom of the program, write the main script:
+
+\begin{verbatim}
+x = np.linspace(-np.pi,
+                np.pi, 400)
+
+plot_series(x, 1)
+plot_series(x, 5)
+plot_series(x, 20)
+
+plt.plot(x, x,
+         label="f(x) = x")
+
+plt.xlabel("x")
+plt.ylabel("f(x)")
+plt.title("Sawtooth Fourier Series")
+plt.legend()
+plt.grid()
+plt.show()
+\end{verbatim}
+
+\begin{itemize}
+
+\item Run the complete program and compare the three
+approximations.
+
+\item Which function calls \texttt{fourier\_term()}?
+
+\item Which function calls \texttt{sawtooth()}?
+
+\item Which part of the program controls which values of
+$N$ are plotted?
+
+\item Change the final call from
+
+\begin{verbatim}
+plot_series(x, 20)
+\end{verbatim}
+
+to
+
+\begin{verbatim}
+plot_series(x, 50)
+\end{verbatim}
+
+and observe how the approximation changes.
+
+\end{itemize}
+
+\end{enumerate}
+
+\end{document}

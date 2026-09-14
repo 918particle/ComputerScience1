@@ -1,0 +1,176 @@
+\documentclass{article}
+\usepackage[margin=1.5cm]{geometry}
+\usepackage{amsmath}
+\usepackage{enumitem}
+
+\setlist{nosep,leftmargin=*}
+
+\begin{document}
+\twocolumn
+
+\title{Chapter 6 In-Class Exercise: Defining and Calling Functions}
+\author{Prof. Jordan C. Hanson}
+\date{}
+
+\maketitle
+
+\section{Defining a Function}
+
+\begin{enumerate}
+
+\item A function is a named block of code that performs a task.
+A simple Python function is defined using \texttt{def}:
+
+\begin{verbatim}
+def square(x):
+    y = x * x
+    return y
+\end{verbatim}
+
+Here, \texttt{x} is a \textbf{parameter}.  The
+\texttt{return} statement sends the calculated value back
+to the program.
+
+Call the function using
+
+\begin{verbatim}
+print(square(3))
+print(square(5))
+\end{verbatim}
+
+Before running the code, predict both results.
+
+\end{enumerate}
+
+
+\section{Arguments and Return Values}
+
+\begin{enumerate}
+
+\item A value supplied when a function is called is an
+\textbf{argument}.  Try
+
+\begin{verbatim}
+a = square(4)
+b = square(6)
+
+print(a)
+print(b)
+print(a + b)
+\end{verbatim}
+
+Answer the following:
+
+\begin{itemize}
+\item What argument is supplied in \texttt{square(4)}?
+\item What value is returned?
+\item What values are stored in \texttt{a} and \texttt{b}?
+\end{itemize}
+
+\end{enumerate}
+
+
+\section{A Function with a Pole}
+
+\begin{enumerate}
+
+\item Consider the mathematical function
+
+\[
+f(x)=\frac{1}{x-1}.
+\]
+
+This function has a \textbf{pole} at $x=1$, where the
+denominator becomes zero.
+
+Define the function in Python:
+
+\begin{verbatim}
+def f(x):
+    return 1 / (x - 1)
+\end{verbatim}
+
+Evaluate it at several points between 0 and 2:
+
+\begin{verbatim}
+print(f(0.0))
+print(f(0.5))
+print(f(0.9))
+print(f(1.1))
+print(f(1.5))
+print(f(2.0))
+\end{verbatim}
+
+\begin{itemize}
+
+\item What happens to $f(x)$ as $x$ approaches 1 from
+the left?
+
+\item What happens as $x$ approaches 1 from the right?
+
+\item Predict what will happen if you execute
+
+\begin{verbatim}
+print(f(1.0))
+\end{verbatim}
+
+Why?
+
+\end{itemize}
+
+\end{enumerate}
+
+
+\section{In-Class Exercise}
+
+\begin{enumerate}
+
+\item Define a new function
+
+\[
+g(x)=\frac{x+2}{x-1}.
+\]
+
+Your function should have the form
+
+\begin{verbatim}
+def g(x):
+    # calculate the function
+    # return the result
+\end{verbatim}
+
+\begin{itemize}
+
+\item Evaluate \texttt{g(x)} at
+
+\[
+x=0,\;0.5,\;0.9,\;1.1,\;1.5,\;2.
+\]
+
+Use a simple \texttt{for} loop:
+
+\begin{verbatim}
+values = [0, 0.5, 0.9,
+          1.1, 1.5, 2]
+
+for x in values:
+    print(x, g(x))
+\end{verbatim}
+
+\item Which statement \textbf{defines} the function?
+
+\item Which expression \textbf{calls} the function?
+
+\item What value is the \textbf{argument} during the first
+pass through the loop?
+
+\item What is returned by \texttt{g(2)}?
+
+\item Where is the pole of $g(x)$?  Explain how you can
+identify it directly from the denominator.
+
+\end{itemize}
+
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,167 @@
+\documentclass{article}
+\usepackage[margin=1.5cm]{geometry}
+\usepackage{amsmath}
+\usepackage{enumitem}
+
+\setlist{nosep,leftmargin=*}
+
+\begin{document}
+\twocolumn
+
+\title{Chapter 6 Warm-Up: Functions and a Sawtooth Wave}
+\author{Prof. Jordan C. Hanson}
+\date{}
+
+\maketitle
+
+\section{Defining a Function}
+
+\begin{enumerate}
+
+\item Python functions allow us to give a name to a calculation and
+evaluate it for different arguments.  Begin with
+
+\begin{verbatim}
+import numpy as np
+import matplotlib.pyplot as plt
+
+def wave(x):
+    return np.sin(x)
+\end{verbatim}
+
+Create 400 values between $-\pi$ and $\pi$:
+
+\begin{verbatim}
+x = np.linspace(-np.pi,
+                np.pi, 400)
+
+y = wave(x)
+\end{verbatim}
+
+Here, the argument \texttt{x} is an array, so the function evaluates
+$\sin(x)$ at every value in the array.
+
+\end{enumerate}
+
+
+\section{Adding Trigonometric Terms}
+
+\begin{enumerate}
+
+\item The periodic sawtooth function
+
+\[
+f(x)=x,\qquad -\pi < x < \pi
+\]
+
+can be approximated by the sum
+
+\[
+f_N(x)=
+2\sum_{n=1}^{N}
+\frac{(-1)^{n+1}}{n}\sin(nx).
+\]
+
+Define a Python function that calculates this sum:
+
+\begin{verbatim}
+def sawtooth(x, N):
+    total = 0.0
+
+    for n in range(1, N + 1):
+        term = 2 * (-1)**(n + 1)
+        term = term * np.sin(n*x)/n
+        total = total + term
+
+    return total
+\end{verbatim}
+
+\begin{itemize}
+
+\item What are the two parameters of this function?
+
+\item What does \texttt{n} represent?
+
+\item Why must \texttt{total} be defined before the loop?
+
+\item What value is returned by the function?
+
+\end{itemize}
+
+\end{enumerate}
+
+
+\section{Code Lab: Build the Sawtooth}
+
+\begin{enumerate}
+
+\item Evaluate the approximation with only one term:
+
+\begin{verbatim}
+y1 = sawtooth(x, 1)
+\end{verbatim}
+
+Now evaluate it using more terms:
+
+\begin{verbatim}
+y3 = sawtooth(x, 3)
+y10 = sawtooth(x, 10)
+\end{verbatim}
+
+Plot all three results:
+
+\begin{verbatim}
+plt.plot(x, y1, label="N = 1")
+plt.plot(x, y3, label="N = 3")
+plt.plot(x, y10, label="N = 10")
+
+plt.xlabel("x")
+plt.ylabel("f(x)")
+plt.legend()
+plt.grid()
+plt.show()
+\end{verbatim}
+
+\begin{itemize}
+
+\item Which approximation looks most like a straight line between
+$-\pi$ and $\pi$?
+
+\item What happens near $x=-\pi$ and $x=\pi$?
+
+\item Increase the number of terms to
+
+\begin{verbatim}
+N = 50
+\end{verbatim}
+
+and plot the result.  Does adding terms make the transition at the
+edge sharper?
+
+\end{itemize}
+
+\end{enumerate}
+
+
+\section{Challenge}
+
+\begin{enumerate}
+
+\item Modify the plotting code so that it compares
+
+\[
+N=1,\qquad N=5,\qquad N=20.
+\]
+
+Then add the exact line $f(x)=x$:
+
+\begin{verbatim}
+plt.plot(x, x, label="f(x) = x")
+\end{verbatim}
+
+Which value of $N$ gives the closest approximation over most of the
+interval?
+
+\end{enumerate}
+
+\end{document}
