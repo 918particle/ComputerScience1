@@ -1,0 +1,130 @@
+\documentclass{article}
+\usepackage[margin=1.5cm]{geometry}
+\usepackage{amsmath}
+\usepackage{enumitem}
+
+\setlist{nosep,leftmargin=*}
+
+\begin{document}
+\twocolumn
+
+\title{Problem Set 3: Loops and Functions}
+\author{Prof. Jordan C. Hanson}
+\date{}
+\maketitle
+
+\section{Exercise 1: Evaluating a Function}
+
+\begin{enumerate}
+\item Define the mathematical function
+\[
+f(x)=\frac{x+1}{x-1}.
+\]
+The function has a pole at $x=1$.  Write a Python function
+
+\begin{verbatim}
+def f(x):
+    return (x + 1) / (x - 1)
+\end{verbatim}
+
+Use the list
+
+\begin{verbatim}
+values = [0, 0.5, 0.9,
+          1.1, 1.5, 2]
+\end{verbatim}
+
+and a \texttt{for} loop to evaluate and print $x$ and $f(x)$ for every value in the list.
+
+\begin{itemize}
+\item Your loop must call \texttt{f(x)} rather than repeating the formula inside the loop.
+\item Explain why $x=1$ is not included in \texttt{values}.
+\item Add the values $0.99$ and $1.01$.  What happens to the magnitude and sign of $f(x)$ near the pole?
+\end{itemize}
+\end{enumerate}
+
+\section{Exercise 2: Placement Function}
+
+\begin{enumerate}
+\item A placement score determines the appropriate math course:
+\begin{center}
+\begin{tabular}{c|c}
+\textbf{Score} & \textbf{Course} \\ \hline
+0--1 & Algebra \\
+2--3 & Trigonometry \\
+4--5 & Calculus
+\end{tabular}
+\end{center}
+
+Write a function
+
+\begin{verbatim}
+def placement(score):
+    # use if, elif, else
+    # return a course name
+\end{verbatim}
+
+that \textbf{returns} the appropriate course name as a string.
+Test the function first with
+
+\begin{verbatim}
+print(placement(1))
+print(placement(3))
+print(placement(5))
+\end{verbatim}
+
+The results should be Algebra, Trigonometry, and Calculus.
+
+Now use
+
+\begin{verbatim}
+students = [
+ ("Maya", 20681001, 5),
+ ("Noah", 20681002, 1),
+ ("Olivia", 20681003, 3),
+ ("Liam", 20681004, 4),
+ ("Sophia", 20681005, 2),
+ ("Ethan", 20681006, 0)
+]
+\end{verbatim}
+
+Create the roster structure
+
+\begin{verbatim}
+algebra = ["Algebra", []]
+trig = ["Trigonometry", []]
+calculus = ["Calculus", []]
+math_courses = (algebra, trig, calculus)
+\end{verbatim}
+
+Use one \texttt{for} loop to process every student.  For each student:
+
+\begin{itemize}
+\item extract the name, student ID, and score;
+\item call \texttt{placement(score)};
+\item append the tuple \texttt{(name, student\_id)} to the correct roster.
+\end{itemize}
+
+Do not repeat the placement rules inside the loop; the decision must be made by the function.
+
+Finally, print \texttt{math\_courses} and verify that every student appears exactly once and in the correct course.
+\end{enumerate}
+
+\section{Exercise 3: While-Loop Count}
+
+\begin{enumerate}
+\item Use a simple \texttt{while} loop to count the total number of students stored in the three rosters.
+
+Begin with
+
+\begin{verbatim}
+i = 0
+total = 0
+\end{verbatim}
+
+and use \texttt{i} to access each element of \texttt{math\_courses}.  During each pass, add the length of that course's student list to \texttt{total}, then increase \texttt{i} by one.
+
+Print \texttt{total}.  What value should the program produce, and why?
+\end{enumerate}
+
+\end{document}

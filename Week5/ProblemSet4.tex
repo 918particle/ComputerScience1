@@ -1,0 +1,227 @@
+\documentclass{article}
+\usepackage[margin=1.5cm]{geometry}
+\usepackage{amsmath}
+\usepackage{enumitem}
+
+\setlist{nosep,leftmargin=*}
+
+\begin{document}
+\twocolumn
+
+\title{Problem Set 4: Functions and Modules}
+\author{Prof. Jordan C. Hanson}
+\date{}
+
+\maketitle
+
+\section{Exercise 1: Patient Data Module}
+
+\begin{enumerate}
+
+\item Create a Python module called
+
+\begin{verbatim}
+patient_data.py
+\end{verbatim}
+
+The module will organize a block of fictional patient records.
+Each patient should be represented by a tuple containing
+
+\begin{verbatim}
+(name, ssn, age, dob,
+ height, weight, gender)
+\end{verbatim}
+
+Use the following data:
+
+\begin{verbatim}
+patients = [
+ ("Alan Reed", "000-00-0001", 74,
+  "04/12/1952", 70, 218, "M"),
+
+ ("Maria Lopez", "000-00-0002", 76,
+  "09/03/1950", 64, 155, "F"),
+
+ ("Robert Chen", "000-00-0003", 68,
+  "01/19/1958", 72, 225, "M"),
+
+ ("James Hill", "000-00-0004", 82,
+  "11/28/1943", 69, 210, "M"),
+
+ ("Susan Patel", "000-00-0005", 72,
+  "06/14/1954", 65, 205, "F"),
+
+ ("David King", "000-00-0006", 71,
+  "02/07/1955", 71, 195, "M"),
+
+ ("Henry Cole", "000-00-0007", 79,
+  "08/21/1947", 68, 242, "M"),
+
+ ("Linda Grant", "000-00-0008", 66,
+  "12/02/1959", 63, 180, "F")
+]
+\end{verbatim}
+
+The SSNs above are fictional identifiers created only for this
+programming exercise.
+
+\end{enumerate}
+
+
+\section{Exercise 2: Module Functions}
+
+\begin{enumerate}
+
+\item Inside \texttt{patient\_data.py}, define the following
+functions.
+
+\begin{itemize}
+
+\item A function that returns the complete patient list:
+
+\begin{verbatim}
+def get_patients():
+    """Return all patient records."""
+    return patients
+\end{verbatim}
+
+\item A function called
+
+\begin{verbatim}
+def screening_rule(patient):
+\end{verbatim}
+
+that returns \texttt{True} only when all three conditions are met:
+
+\[
+\text{gender = male},
+\qquad
+\text{age} > 70,
+\qquad
+\text{weight} > 200.
+\]
+
+Use the tuple indices and Boolean operator \texttt{and}.
+For example,
+
+\begin{verbatim}
+age = patient[2]
+weight = patient[5]
+gender = patient[6]
+\end{verbatim}
+
+The function must \textbf{return} a Boolean value rather than
+printing the result.
+
+\item Define a third function
+
+\begin{verbatim}
+def display_patient(patient):
+\end{verbatim}
+
+that prints the patient's information in a readable format.
+
+For example,
+
+\begin{verbatim}
+Name: Alan Reed
+SSN: 000-00-0001
+Age: 74
+DoB: 04/12/1952
+Height: 70 in
+Weight: 218 lb
+Gender: M
+\end{verbatim}
+
+Include a short docstring inside each function.
+
+\end{itemize}
+\end{enumerate}
+
+
+\section{Exercise 3: Screening Program}
+
+\begin{enumerate}
+
+\item Create a second Python file called
+
+\begin{verbatim}
+heart_screen.py
+\end{verbatim}
+
+Import your module using
+
+\begin{verbatim}
+import patient_data
+\end{verbatim}
+
+Retrieve the patient records:
+
+\begin{verbatim}
+patients = patient_data.get_patients()
+\end{verbatim}
+
+Then use a \texttt{for} loop to examine each patient:
+
+\begin{verbatim}
+for patient in patients:
+
+    if patient_data.screening_rule(
+            patient):
+
+        patient_data.display_patient(
+            patient)
+
+        print("")
+\end{verbatim}
+
+Your program should display \textbf{only} patients who satisfy
+all three screening conditions.
+
+\begin{itemize}
+
+\item Do not repeat the screening logic in
+\texttt{heart\_screen.py}.  The decision must be made by the
+function inside the module.
+
+\item Do not manually type the names of qualifying patients.
+
+\item Verify that changing one patient's age, weight, or gender in
+\texttt{patient\_data.py} can change whether that patient appears
+in the final output.
+
+\item Add the heading
+
+\begin{verbatim}
+Patients Matching Screening Rule
+\end{verbatim}
+
+before displaying the selected records.
+
+\end{itemize}
+
+\end{enumerate}
+
+
+\section{Check Your Program}
+
+\begin{enumerate}
+
+\item Your submission should contain exactly two Python files:
+
+\begin{verbatim}
+patient_data.py
+heart_screen.py
+\end{verbatim}
+
+The module should store the patient data and define reusable
+functions.  The main program should import the module and call
+those functions.
+
+For this programming exercise, the three-condition rule is only a
+software-filtering example and should not be interpreted as an
+actual medical assessment of heart-disease risk.
+
+\end{enumerate}
+
+\end{document}
