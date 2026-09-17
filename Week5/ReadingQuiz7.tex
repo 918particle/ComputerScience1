@@ -1,0 +1,193 @@
+\documentclass{article}
+\usepackage[margin=1.5cm]{geometry}
+\usepackage{amsmath}
+\usepackage{enumitem}
+
+\setlist{nosep,leftmargin=*}
+
+\begin{document}
+\twocolumn
+
+\title{Chapter 7 Warm-Up: Importing Functions from Modules}
+\author{Prof. Jordan C. Hanson}
+\date{}
+
+\maketitle
+
+\section{Creating a Module}
+
+\begin{enumerate}
+
+\item A Python \textbf{module} is a \texttt{.py} file containing
+code that can be imported into another program.
+
+Create a new file called
+
+\begin{verbatim}
+math_tools.py
+\end{verbatim}
+
+and place the following functions inside it:
+
+\begin{verbatim}
+def square(x):
+    return x * x
+
+def cube(x):
+    return x * x * x
+
+def average(x, y):
+    return (x + y) / 2
+\end{verbatim}
+
+Save the file.  The functions are now organized inside the
+module \texttt{math\_tools}.
+
+\end{enumerate}
+
+
+\section{Uploading to Google Colab}
+
+\begin{enumerate}
+
+\item Open a new Google Colab notebook.
+
+Upload \texttt{math\_tools.py} to the Colab runtime:
+
+\begin{enumerate}[label=\arabic*.]
+\item Click the \textbf{Files} folder icon on the left side.
+\item Click the \textbf{Upload} icon in the Files panel.
+\item Select \texttt{math\_tools.py} from your computer.
+\item Confirm that \texttt{math\_tools.py} appears in the
+      Colab file list.
+\end{enumerate}
+
+The module must be in the current Colab runtime before Python can
+import it.
+
+\end{enumerate}
+
+
+\section{Importing the Module}
+
+\begin{enumerate}
+
+\item In a Colab code cell, import the complete module:
+
+\begin{verbatim}
+import math_tools
+\end{verbatim}
+
+Functions inside the module are accessed using the module name
+followed by a period:
+
+\begin{verbatim}
+print(math_tools.square(5))
+print(math_tools.cube(3))
+print(math_tools.average(8, 12))
+\end{verbatim}
+
+Before running the cell, predict the three outputs.
+
+\begin{itemize}
+
+\item What does the name \texttt{math\_tools} refer to?
+
+\item Which part of
+
+\begin{verbatim}
+math_tools.square(5)
+\end{verbatim}
+
+is the module name?  Which part is the function name?
+
+\end{itemize}
+
+\end{enumerate}
+
+
+\section{Importing a Function}
+
+\begin{enumerate}
+
+\item Python can also import an individual function:
+
+\begin{verbatim}
+from math_tools import square
+\end{verbatim}
+
+Now call it without the module name:
+
+\begin{verbatim}
+print(square(7))
+\end{verbatim}
+
+Compare this with
+
+\begin{verbatim}
+import math_tools
+print(math_tools.square(7))
+\end{verbatim}
+
+Both call the same function, but they use different import
+statements.
+
+\end{enumerate}
+
+
+\section{Code-Lab Exercise}
+
+\begin{enumerate}
+
+\item Add the following function to
+\texttt{math\_tools.py}:
+
+\begin{verbatim}
+def classify_score(score):
+    if score >= 4:
+        return "Calculus"
+    elif score >= 2:
+        return "Trigonometry"
+    else:
+        return "Algebra"
+\end{verbatim}
+
+Upload the updated file to Colab.  Then import the function:
+
+\begin{verbatim}
+from math_tools import classify_score
+\end{verbatim}
+
+Test it using
+
+\begin{verbatim}
+scores = [0, 2, 3, 5]
+
+for score in scores:
+    course = classify_score(score)
+    print(score, course)
+\end{verbatim}
+
+\begin{itemize}
+
+\item Predict the four course assignments before running the code.
+
+\item Which file \textbf{defines} the function?
+
+\item Which file or notebook \textbf{calls} the function?
+
+\item Add one more score to the list and verify that the imported
+function still performs the placement correctly.
+
+\end{itemize}
+
+\end{enumerate}
+
+
+\section{Important}
+
+Files uploaded directly to a Colab runtime are temporary.  If the
+runtime is restarted or disconnected, you may need to upload your
+module again.
+
+\end{document}

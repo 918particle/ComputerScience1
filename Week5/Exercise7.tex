@@ -1,0 +1,169 @@
+\documentclass{article}
+\usepackage[margin=1.5cm]{geometry}
+\usepackage{amsmath}
+\usepackage{enumitem}
+
+\setlist{nosep,leftmargin=*}
+
+\begin{document}
+\twocolumn
+
+\title{Chapter 7 In-Class Exercise: Fourier Series as a Module}
+\author{Prof. Jordan C. Hanson}
+\date{}
+
+\maketitle
+
+\section{Step 1: Create the Module}
+
+\begin{enumerate}
+
+\item Previously, we created separate functions for one Fourier term, the Fourier sum, and the plot.  We will now place those functions inside a module. Create a file called
+
+\begin{verbatim}
+fourier_tools.py
+\end{verbatim}
+
+and begin with
+
+\begin{verbatim}
+import numpy as np
+import matplotlib.pyplot as plt
+\end{verbatim}
+
+Add the function that evaluates the $n$-th term:
+
+\[
+a_n(x)=
+2\frac{(-1)^{n+1}}{n}\sin(nx).
+\]
+
+\begin{verbatim}
+def fourier_term(x, n):
+    term = 2 * (-1)**(n + 1)
+    term = term * np.sin(n*x) / n
+    return term
+\end{verbatim}
+
+\end{enumerate}
+
+
+\section{Step 2: Add the Sum}
+
+\begin{enumerate}
+
+\item Add a second function to the same module:
+
+\begin{verbatim}
+def sawtooth(x, N):
+    total = 0.0
+    for n in range(1, N + 1):
+        total = total + \
+                fourier_term(x, n)
+    return total
+\end{verbatim}
+
+Notice that \texttt{sawtooth()} calls another function located inside the same module.
+
+\begin{itemize}
+
+\item Which function performs one Fourier-series term?
+
+\item Which function controls how many terms are added?
+
+\end{itemize}
+
+\end{enumerate}
+
+
+\section{Step 3: Add the Plot Function}
+
+\begin{enumerate}
+
+\item Add a third function:
+
+\begin{verbatim}
+def plot_series(x, N):
+    y = sawtooth(x, N)
+    plt.plot(x, y, label=f"N = {N}")
+\end{verbatim}
+
+The module now contains three related functions:
+
+\begin{verbatim}
+fourier_term()
+sawtooth()
+plot_series()
+\end{verbatim}
+
+Save the completed file.
+
+\end{enumerate}
+
+
+\section{Step 4: Upload and Import}
+
+\begin{enumerate}
+
+\item In Google Colab, upload \verb+fourier_tools.py+. In a new code cell, import the module:
+
+\begin{verbatim}
+import fourier_tools
+\end{verbatim}
+
+Also import the libraries needed by the main program:
+
+\begin{verbatim}
+import numpy as np
+import matplotlib.pyplot as plt
+\end{verbatim}
+
+Test one function directly:
+
+\begin{verbatim}
+print(fourier_tools.fourier_term(np.pi/4, 1))
+\end{verbatim}
+
+\end{enumerate}
+
+
+\section{Step 5: Main Program}
+
+\begin{enumerate}
+
+\item Write the following script in a Colab code cell:
+
+\begin{verbatim}
+x = np.linspace(-np.pi,np.pi, 400)
+fourier_tools.plot_series(x, 1)
+fourier_tools.plot_series(x, 5)
+fourier_tools.plot_series(x, 20)
+plt.plot(x, x, label="f(x) = x")
+plt.xlabel("x")
+plt.ylabel("f(x)")
+plt.title("Sawtooth Fourier Series")
+plt.legend()
+plt.grid()
+plt.show()
+\end{verbatim}
+
+Run the program and inspect the graph.
+
+\begin{itemize}
+
+\item Which file contains the mathematical functions?
+
+\item Which part of the program determines $N$?
+
+\item Change the final value from $N=20$ to $N=50$ and run the program again.
+
+\end{itemize}
+
+\end{enumerate}
+
+
+\section{Challenge}
+
+Modify the main program so that the values of $N$ are stored in \verb+terms = [1, 5, 20, 50]+ and use a \texttt{for}  loop to call \texttt{fourier\_tools.plot\_series()} for each value.
+
+\end{document}
