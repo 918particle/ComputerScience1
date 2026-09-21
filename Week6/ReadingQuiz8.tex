@@ -1,0 +1,171 @@
+\documentclass{article}
+\usepackage[margin=1.5cm]{geometry}
+\usepackage{amsmath}
+\usepackage{enumitem}
+
+\setlist{nosep,leftmargin=*}
+
+\begin{document}
+\twocolumn
+
+\title{Chapters 6--7 Warm-Up: Functions and Modules}
+\author{Prof. Jordan C. Hanson}
+\date{September 21, 2026}
+
+\maketitle
+
+\section{Starting Data}
+
+\begin{enumerate}
+
+\item We will review functions and modules by extending the
+patient-database ideas from Problem Set 4.  Suppose a patient record is represented by a list:
+
+\begin{verbatim}
+patient = [1042,"Maria Garcia",37]
+\end{verbatim}
+
+The entries represent the patient ID, name, and age.
+
+\end{enumerate}
+
+\section{Functions and Parameters}
+
+\begin{enumerate}
+
+\item Write a function
+
+\begin{verbatim}
+def display_patient(patient):
+    # your code here
+\end{verbatim}
+
+that prints the record in the form
+
+\begin{verbatim}
+ID: 1042
+Name: Maria Garcia
+Age: 37
+\end{verbatim}
+
+\begin{itemize}
+
+\item In the function definition, what is the
+\textbf{parameter}?
+
+\item When you call \verb+display_patient(patient)+ what is the \textbf{argument}?
+
+\end{itemize}
+
+\end{enumerate}
+
+
+\section{Returning a Result}
+
+\begin{enumerate}
+
+\item Consider the database
+
+\begin{verbatim}
+patients = [
+ [1042, "Maria Garcia", 37],
+ [1057, "Daniel Kim", 52],
+ [1081, "Aisha Patel", 29]
+]
+\end{verbatim}
+
+Write a function
+
+\begin{verbatim}
+find_patient(patients,patient_id)
+\end{verbatim}
+
+that searches through the database by patient ID.  If the ID is found, the function should \verb+return patient+.  If no record matches, use \verb+return None+.  A useful structure is
+
+\begin{verbatim}
+def find_patient(patients,patient_id):
+    for patient in patients:
+        if patient[0] == patient_id:
+            return patient
+    return None
+\end{verbatim}
+
+Why is \texttt{return} more useful here than simply printing the matching record inside the function?
+
+\end{enumerate}
+
+
+\section{Using a Module}
+
+\begin{enumerate}
+
+\item Place the two functions
+
+\begin{verbatim}
+display_patient()
+find_patient()
+\end{verbatim}
+
+inside a file called
+
+\begin{verbatim}
+patient_tools.py
+\end{verbatim}
+
+In a second Python file or Google Colab notebook, import the
+module:
+
+\begin{verbatim}
+import patient_tools
+\end{verbatim}
+
+Then search for patient ID \texttt{1057}:
+
+\begin{verbatim}
+result = patient_tools.find_patient(patients, 1057)
+\end{verbatim}
+
+Display the result using the function from the module:
+
+\begin{verbatim}
+patient_tools.display_patient(result)
+\end{verbatim}
+
+\begin{itemize}
+
+\item Which file \textbf{defines} the functions?
+
+\item Which file or notebook \textbf{calls} the functions?
+
+\item What value is stored in \texttt{result}?
+
+\end{itemize}
+
+\end{enumerate}
+
+
+\section{Think Ahead to Chapter 8}
+
+\begin{enumerate}
+
+\item Our current search requires an exact numeric patient ID.
+
+Suppose instead that the user remembers only part of a patient's
+name:
+
+\begin{verbatim}
+"Garcia"
+\end{verbatim}
+
+What new kind of operation would the program need in order to
+locate the correct record?
+
+\vspace{0.25cm}
+
+\textbf{Takeaway:} Chapters 6--7 allow us to organize programs into
+reusable functions and modules. Chapter 8 will allow us to make
+the patient search more flexible by examining and matching strings.
+
+\end{enumerate}
+
+\end{document}

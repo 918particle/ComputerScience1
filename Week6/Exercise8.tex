@@ -1,0 +1,167 @@
+\documentclass{article}
+\usepackage[margin=1.5cm]{geometry}
+\usepackage{amsmath}
+\usepackage{enumitem}
+
+\setlist{nosep,leftmargin=*}
+
+\begin{document}
+\twocolumn
+
+\title{Chapter 8 In-Class Exercise: Searching Strings in a Patient Database}
+\author{Prof. Jordan C. Hanson}
+\date{September 21, 2026}
+
+\maketitle
+
+\section{Starting Data}
+
+\begin{enumerate}
+
+\item Chapter 8 string operations allow us to make a database
+search more flexible.  Instead of requiring an exact patient ID,
+we can search for names and partial names.
+
+Begin with the patient database
+
+\begin{verbatim}
+patients = [
+ [1042, "Maria Garcia", 37],
+ [1057, "Daniel Kim", 52],
+ [1081, "Aisha Patel", 29],
+ [1094, "Elena Garcia", 44],
+ [1103, "Marcus Johnson", 61]
+]
+\end{verbatim}
+
+Each record contains
+
+\begin{verbatim}
+[patient_id, name, age]
+\end{verbatim}
+
+\end{enumerate}
+
+
+\section{Exact String Match}
+
+\begin{enumerate}
+
+\item Write a loop that prints the complete patient record whose
+name is exactly
+
+\begin{verbatim}
+"Maria Garcia"
+\end{verbatim}
+
+Use the string comparison operator \texttt{==}.  A useful structure is
+
+\begin{verbatim}
+for patient in patients:
+    if patient[1] == "Maria Garcia":
+        print(patient)
+\end{verbatim}
+
+How many patient records should be printed?
+
+\end{enumerate}
+
+\section{Substring Match}
+
+\begin{enumerate}
+
+\item Modify the search so that every patient whose name contains \verb+"Garcia"+ is printed.  Use Python's \texttt{in} operator:
+
+\begin{verbatim}
+if "Garcia" in patient[1]:
+    print(patient)
+\end{verbatim}
+
+\begin{itemize}
+
+\item How many records are printed?
+
+\item Why does this search find both \texttt{"Maria Garcia"} and \texttt{"Elena Garcia"}?
+
+\end{itemize}
+
+\end{enumerate}
+
+
+\section{Case-Insensitive Search}
+
+\begin{enumerate}
+
+\item A user may type ''garcia'', ''Garcia'', or ''GARCIA''.  Use the string method \verb+.lower()+ so that capitalization does not affect the search. Try
+
+\begin{verbatim}
+search = "GARCIA"
+for patient in patients:
+    if search.lower() in patient[1].lower():
+		print(patient)
+\end{verbatim}
+
+Why must both \texttt{search} and the patient name be converted to lowercase?
+
+\end{enumerate}
+
+\section{User-Controlled Search}
+
+\begin{enumerate}
+
+\item Ask the user for a complete or partial patient name:
+
+\begin{verbatim}
+search = input("Enter a patient name or partial name: ")
+\end{verbatim}
+
+Write a loop that searches all patient names and prints every matching record.  Your search must be case-insensitive. Test your program using
+
+\begin{verbatim}
+Garcia
+garcia
+Daniel
+PATEL
+\end{verbatim}
+
+\end{enumerate}
+
+
+\section{Challenge: Count Matches}
+
+\begin{enumerate}
+
+\item Add a counter before the loop:
+
+\begin{verbatim}
+matches = 0
+\end{verbatim}
+
+Whenever a matching patient is found, increase the counter:
+
+\begin{verbatim}
+matches = matches + 1
+\end{verbatim}
+
+After the search finishes, use
+
+\begin{verbatim}
+if matches == 0:
+    print("No matching patients "
+          "were found.")
+else:
+    print("Matches:", matches)
+\end{verbatim}
+
+Test the program with one search that produces multiple matches
+and another search that produces no matches.
+
+\vspace{0.15cm}
+
+\textbf{Key Chapter 8 ideas:}
+string equality with \texttt{==}, substring membership with
+\texttt{in}, and string methods such as \texttt{.lower()}.
+
+\end{enumerate}
+
+\end{document}
