@@ -1,0 +1,166 @@
+\documentclass{article}
+\usepackage[margin=1.5cm]{geometry}
+\usepackage{amsmath}
+\usepackage{enumitem}
+
+\setlist{nosep,leftmargin=*}
+
+\begin{document}
+\twocolumn
+
+\title{Chapter 9 Warm-Up: Organizing Course Data with Lists}
+\author{Prof. Jordan C. Hanson}
+\date{}
+
+\maketitle
+
+\section{Nested Course Lists}
+
+\begin{enumerate}
+
+\item Chapter 9 develops techniques for modifying, sorting, and searching lists.  We will use a nested list to represent a college course schedule. One course is represented by
+
+\begin{verbatim}
+course = ["PHYS",100,"SLC", 202]
+\end{verbatim}
+
+The four elements represent
+
+\begin{verbatim}
+[subject, number, building, room]
+\end{verbatim}
+
+Thus, this record represents Physics 100 in SLC 202.
+
+\end{enumerate}
+
+
+\section{A List of Lists}
+
+\begin{enumerate}
+
+\item Several course records can be stored inside one master list:
+
+\begin{verbatim}
+courses = [
+ ["PHYS", 100, "SLC", 202],
+ ["MATH", 150, "SLC", 105],
+ ["BIOL", 101, "SLC", 210],
+ ["PHYS", 200, "SLC", 202]
+]
+\end{verbatim}
+
+Each element of \texttt{courses} is itself a list.  Print one complete record:
+
+\begin{verbatim}
+print(courses[1])
+\end{verbatim}
+
+Then print only its room number:
+
+\begin{verbatim}
+print(courses[1][3])
+\end{verbatim}
+
+\end{enumerate}
+
+
+\section{Appending Courses}
+
+\begin{enumerate}
+
+\item Define a function that adds a course to the master list:
+
+\begin{verbatim}
+def add_course(courses, course):
+    courses.append(course)
+\end{verbatim}
+
+Test it using
+
+\begin{verbatim}
+new_course = ["COSC",120,"SLC",416]
+add_course(courses, new_course)
+\end{verbatim}
+
+Use \verb+print(len(courses))+ to verify that the new record was added.
+
+\end{enumerate}
+
+
+\section{Sorting the Master List}
+
+\begin{enumerate}
+
+\item Lists can be sorted using \texttt{sort()}. Define
+
+\begin{verbatim}
+def sort_courses(courses):
+    courses.sort()
+\end{verbatim}
+
+Then run
+
+\begin{verbatim}
+sort_courses(courses)
+for course in courses:
+    print(course)
+\end{verbatim}
+
+Since the subject is element \texttt{0}, Python first sorts the records alphabetically by subject. If two subjects are the same, which element is compared next?
+
+\end{enumerate}
+
+
+\section{Searching for Room Conflicts}
+
+\begin{enumerate}
+
+\item Two courses conflict if they use the same building and room. Define
+
+\begin{verbatim}
+def same_room(c1, c2):
+    return c1[2] == c2[2] and c1[3] == c2[3]
+\end{verbatim}
+
+Now use nested loops to compare every pair:
+
+\begin{verbatim}
+for i in range(len(courses)):
+    for j in range(i+1,len(courses)):
+        if same_room(courses[i],courses[j]):
+            print("Room conflict:")
+            print(courses[i])
+            print(courses[j])
+\end{verbatim}
+
+Why does the inner loop begin at \texttt{i+1} instead of zero?
+
+\end{enumerate}
+
+\section{Warm-Up Exercise}
+
+\begin{enumerate}
+
+\item Add the following records using
+\texttt{add\_course()}:
+
+\begin{verbatim}
+["MATH", 250, "SLC", 105]
+["CHEM", 110, "SLC", 210]
+["PHYS", 150, "SLC", 310]
+\end{verbatim}
+
+Complete the following:
+
+\begin{itemize}
+\item Sort the master list
+\item Print every course with a \texttt{for} loop
+\item Use the nested-loop search to print every room conflict
+\end{itemize}
+
+Before running each bit of code, predict which new courses will cause room conflicts.
+
+\end{enumerate}
+
+\end{document}

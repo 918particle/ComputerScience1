@@ -1,0 +1,119 @@
+\documentclass{article}
+\usepackage[margin=1.5cm]{geometry}
+\usepackage{amsmath}
+\usepackage{enumitem}
+
+\setlist{nosep,leftmargin=*}
+
+\begin{document}
+\twocolumn
+
+\title{Chapter 9 In-Class Exercise: Course Schedules and Modules}
+\author{Prof. Jordan C. Hanson}
+\date{}
+
+\maketitle
+
+\section{Adding Meeting Times}
+
+\begin{enumerate}
+
+\item Extend the course records from the warm-up by adding the meeting days and meeting time:
+
+\begin{verbatim}
+[subject,number,building,room,days,time]
+\end{verbatim}
+
+For example,
+
+\begin{verbatim}
+course = ["PHYS",100,"SLC",202,"MWF",1400]
+\end{verbatim}
+
+represents Physics 100, meeting in SLC 202 on Monday, Wednesday, and Friday at 1400 (2:00 PM).  Military time is useful because numerical times can be sorted directly:
+
+\begin{verbatim}
+930 < 1100 < 1400 < 1530
+\end{verbatim}
+
+\end{enumerate}
+
+
+\section{Build the Module}
+
+Create a new Python file called \verb+course_tools.py+.  All of our course-management functions will be placed inside
+this module.  Begin with the function from the warm-up:
+
+\begin{verbatim}
+def add_course(courses, course):
+    courses.append(course)
+\end{verbatim}
+
+Now define a function that returns the meeting time:
+
+\begin{verbatim}
+def get_time(course):
+    return course[5]
+\end{verbatim}
+
+Use it to sort the master list:
+
+\begin{verbatim}
+def sort_by_time(courses):
+    courses.sort(key=get_time)
+\end{verbatim}
+
+The \texttt{key} tells Python which part of each record should control the sorting.
+
+\section{Displaying the Schedule}
+
+Add one final function:
+
+\begin{verbatim}
+def display_courses(courses):
+    for course in courses:
+        print(course[0],
+              course[1],
+              course[4],
+              f"{course[5]:04d}",
+              course[2],
+              course[3])
+\end{verbatim}
+
+The expression \verb+f"{course[5]:04d}"+ ensures that a time such as \texttt{930} is displayed as \texttt{0930}.
+
+\section{Use the Module}
+
+In a second file or Google Colab notebook, begin with
+
+\begin{verbatim}
+import course_tools
+courses = []
+\end{verbatim}
+
+Add the courses you are taking this semester, and the courses of a classmate.  Use the format defined previously.
+
+\section{Sort the Schedule}
+
+Sort the courses by time:
+
+\begin{verbatim}
+course_tools.sort_by_time(courses)
+course_tools.display_courses(courses)
+\end{verbatim}
+
+Predict which course will appear first and last.
+
+\section{Challenge}
+
+Extend the room-conflict function from the warm-up. Two courses should now be reported as a conflict only when they
+
+\begin{itemize}
+\item use the same building and room,
+\item meet at the same time, and
+\item share at least one meeting day.
+\end{itemize}
+
+For example, two courses in SLC 202 at 1400 should \textbf{not} conflict if one meets MWF and the other meets TR.
+
+\end{document}
