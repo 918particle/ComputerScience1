@@ -15,7 +15,14 @@
     \(\bigcirc\)\ \textbf{#1.}\ #2
 }
 
-\newcommand{\bubblecell}[1]{\textbf{#1}\;\(\bigcirc\)A\;\(\bigcirc\)B\;\(\bigcirc\)C\;\(\bigcirc\)D}
+% Compact answer-sheet bubble row
+\newcommand{\bubblecell}[1]{%
+    \textbf{#1}\;
+    \(\bigcirc\)A\;
+    \(\bigcirc\)B\;
+    \(\bigcirc\)C\;
+    \(\bigcirc\)D
+}
 
 \begin{document}
 
@@ -30,7 +37,8 @@ Prof. Jordan C. Hanson
 \noindent
 \textbf{Name:} \hrulefill
 \hspace{0.5cm}
-\textbf{Student ID:} \fbox{\rule{0pt}{1.8ex}\hspace{4cm}}
+\textbf{Student ID:}
+\fbox{\rule{0pt}{1.8ex}\hspace{4cm}}
 
 \vspace{0.2cm}
 
@@ -50,16 +58,47 @@ Each question is worth 4 points.
 
 \small
 \renewcommand{\arraystretch}{1.3}
+
 \begin{center}
-\begin{tabular}{|m{0.18\textwidth}|m{0.18\textwidth}|m{0.18\textwidth}|m{0.18\textwidth}|m{0.18\textwidth}|}
+\begin{tabular}{
+|m{0.18\textwidth}
+|m{0.18\textwidth}
+|m{0.18\textwidth}
+|m{0.18\textwidth}
+|m{0.18\textwidth}|}
 \hline
-\bubblecell{1} & \bubblecell{2} & \bubblecell{3} & \bubblecell{4} & \bubblecell{5} \\ \hline
-\bubblecell{6} & \bubblecell{7} & \bubblecell{8} & \bubblecell{9} & \bubblecell{10} \\ \hline
-\bubblecell{11} & \bubblecell{12} & \bubblecell{13} & \bubblecell{14} & \bubblecell{15} \\ \hline
-\bubblecell{16} & \bubblecell{17} & \bubblecell{18} & \bubblecell{19} & \bubblecell{20} \\ \hline
-\bubblecell{21} & \bubblecell{22} & \bubblecell{23} & \bubblecell{24} & \bubblecell{25} \\ \hline
+\bubblecell{1} &
+\bubblecell{2} &
+\bubblecell{3} &
+\bubblecell{4} &
+\bubblecell{5} \\ \hline
+
+\bubblecell{6} &
+\bubblecell{7} &
+\bubblecell{8} &
+\bubblecell{9} &
+\bubblecell{10} \\ \hline
+
+\bubblecell{11} &
+\bubblecell{12} &
+\bubblecell{13} &
+\bubblecell{14} &
+\bubblecell{15} \\ \hline
+
+\bubblecell{16} &
+\bubblecell{17} &
+\bubblecell{18} &
+\bubblecell{19} &
+\bubblecell{20} \\ \hline
+
+\bubblecell{21} &
+\bubblecell{22} &
+\bubblecell{23} &
+\bubblecell{24} &
+\bubblecell{25} \\ \hline
 \end{tabular}
 \end{center}
+
 \normalsize
 
 \vspace{0.15cm}
@@ -73,18 +112,27 @@ Each question is worth 4 points.
 
 \begin{enumerate}
 
+%---------------------------------------------------------
+% Question 1
+%---------------------------------------------------------
+
 \item What is printed by the following code?
 
 \begin{verbatim}
 x = 7
 y = 3
-print(x // y, x % y)
+print(x / y, x % y)
 \end{verbatim}
 
-\choice{A}{2 1}
-\choice{B}{2 3}
+\choice{A}{2.3333333333333335 1}
+\choice{B}{2 1}
 \choice{C}{2.33 1}
-\choice{D}{3 1}
+\choice{D}{2.3333333333333335 0}
+
+
+%---------------------------------------------------------
+% Question 2
+%---------------------------------------------------------
 
 \item What is printed?
 
@@ -97,6 +145,11 @@ print(f"{x:.2f}")
 \choice{B}{3.14}
 \choice{C}{3.142}
 \choice{D}{3.14159}
+
+
+%---------------------------------------------------------
+% Question 3
+%---------------------------------------------------------
 
 \item Consider
 
@@ -115,6 +168,11 @@ student[2]
 \choice{C}{5}
 \choice{D}{An error occurs}
 
+
+%---------------------------------------------------------
+% Question 4
+%---------------------------------------------------------
+
 \item What is the final value of \texttt{numbers}?
 
 \begin{verbatim}
@@ -127,18 +185,24 @@ numbers.append(3)
 \choice{C}{[3, 1, 2]}
 \choice{D}{1, 2, 3}
 
-\item What decimal value is produced by
+
+%---------------------------------------------------------
+% Question 5
+%---------------------------------------------------------
+
+\item What value is produced by
 
 \begin{verbatim}
-int("1F", 16)
+int(float("7.1"))
 \end{verbatim}
 
-\choice{A}{15}
-\choice{B}{16}
-\choice{C}{31}
-\choice{D}{32}
+\choice{A}{7}
+\choice{B}{7.1}
+\choice{C}{"7"}
+\choice{D}{An error occurs}
 
 \end{enumerate}
+
 
 %=========================================================
 \section*{Boolean Logic and Decisions}
@@ -146,11 +210,14 @@ int("1F", 16)
 \begin{enumerate}
 \setcounter{enumi}{5}
 
+%---------------------------------------------------------
+% Question 6
+%---------------------------------------------------------
+
 \item Consider the placement code
 
 \begin{verbatim}
 score = 3
-
 if score >= 4:
     course = "Calculus"
 elif score >= 2:
@@ -166,18 +233,30 @@ What is stored in \texttt{course}?
 \choice{C}{Algebra}
 \choice{D}{Nothing}
 
-\item What is the value of
+
+%---------------------------------------------------------
+% Question 7
+%---------------------------------------------------------
+
+\item Consider the Boolean variables
 
 \begin{verbatim}
-True or False and False
+E1 = True
+E2 = False or True
+print(E1 or E2)
 \end{verbatim}
 
-Recall that \texttt{and} is evaluated before \texttt{or}.
+What is printed?
 
 \choice{A}{True}
 \choice{B}{False}
-\choice{C}{0}
+\choice{C}{1}
 \choice{D}{An error occurs}
+
+
+%---------------------------------------------------------
+% Question 8
+%---------------------------------------------------------
 
 \item A screening function contains
 
@@ -196,29 +275,38 @@ Which patient satisfies the condition?
 
 \end{enumerate}
 
+
 %=========================================================
 \section*{Loops and Nested Lists}
 
 \begin{enumerate}
 \setcounter{enumi}{8}
 
+%---------------------------------------------------------
+% Question 9
+%---------------------------------------------------------
+
 \item What values are printed?
 
 \begin{verbatim}
-for i in range(1, 4):
+for i in range(4):
     print(i)
 \end{verbatim}
 
 \choice{A}{0, 1, 2, 3}
 \choice{B}{1, 2, 3}
-\choice{C}{1, 2, 3, 4}
-\choice{D}{0, 1, 2}
+\choice{C}{0, 1, 2, 3, 4}
+\choice{D}{1, 2, 3, 4}
+
+
+%---------------------------------------------------------
+% Question 10
+%---------------------------------------------------------
 
 \item How many times does this loop execute?
 
 \begin{verbatim}
 i = 0
-
 while i < 3:
     print(i)
     i = i + 1
@@ -229,22 +317,34 @@ while i < 3:
 \choice{C}{4}
 \choice{D}{The loop never stops}
 
+
+%---------------------------------------------------------
+% Question 11
+%---------------------------------------------------------
+
 \item Consider
 
 \begin{verbatim}
 for i in range(len(courses)):
-
-    for j in range(i + 1,
-                   len(courses)):
+    for j in range(i + 1,len(courses)):
         ...
 \end{verbatim}
 
 Why does the inner loop begin at \texttt{i + 1}?
 
 \choice{A}{To skip every other course}
+
 \choice{B}{To compare each course only with itself}
-\choice{C}{To avoid comparing a pair twice and avoid comparing a course with itself}
+
+\choice{C}{To avoid comparing a pair twice and avoid comparing a
+course with itself}
+
 \choice{D}{Because Python lists begin at index 1}
+
+
+%---------------------------------------------------------
+% Question 12
+%---------------------------------------------------------
 
 \item Consider the matrix
 
@@ -269,27 +369,39 @@ A[1][2]
 
 \end{enumerate}
 
+
 %=========================================================
 \section*{Functions}
 
 \begin{enumerate}
 \setcounter{enumi}{12}
 
+%---------------------------------------------------------
+% Question 13
+%---------------------------------------------------------
+
 \item Consider
 
 \begin{verbatim}
 def square(x):
     return x * x
-
 square(5)
 \end{verbatim}
 
 Which statement is correct?
 
 \choice{A}{\texttt{x} is the argument and 5 is the parameter}
+
 \choice{B}{\texttt{x} is the parameter and 5 is the argument}
+
 \choice{C}{Both \texttt{x} and 5 are parameters}
+
 \choice{D}{Neither is a parameter}
+
+
+%---------------------------------------------------------
+% Question 14
+%---------------------------------------------------------
 
 \item Why is \texttt{return} useful in a function such as
 
@@ -300,27 +412,37 @@ def find_patient(...):
 \end{verbatim}
 
 \choice{A}{It permanently prints the patient}
+
 \choice{B}{It sends a value back to the calling code}
+
 \choice{C}{It automatically creates a loop}
+
 \choice{D}{It imports another module}
 
-\item In our Fourier-series exercise, the functions were
-organized as
+
+%---------------------------------------------------------
+% Question 15
+%---------------------------------------------------------
+
+\item Consider the two functions
 
 \begin{verbatim}
-plot_series()
-sawtooth()
-fourier_term()
+def double(x):
+    return 2 * x
+def calculate(x):
+    return double(x) + 1
+print(calculate(3))
 \end{verbatim}
 
-Which call sequence correctly describes the program?
+What is printed?
 
-\choice{A}{\texttt{fourier\_term()} $\rightarrow$ \texttt{sawtooth()} $\rightarrow$ \texttt{plot\_series()}}
-\choice{B}{\texttt{plot\_series()} $\rightarrow$ \texttt{sawtooth()} $\rightarrow$ \texttt{fourier\_term()}}
-\choice{C}{\texttt{sawtooth()} $\rightarrow$ \texttt{plot\_series()} $\rightarrow$ \texttt{fourier\_term()}}
-\choice{D}{None of the functions call one another}
+\choice{A}{6}
+\choice{B}{7}
+\choice{C}{8}
+\choice{D}{An error occurs}
 
 \end{enumerate}
+
 
 %=========================================================
 \section*{Modules}
@@ -328,22 +450,54 @@ Which call sequence correctly describes the program?
 \begin{enumerate}
 \setcounter{enumi}{15}
 
+%---------------------------------------------------------
+% Question 16
+%---------------------------------------------------------
+
 \item Suppose \texttt{math\_tools.py} contains a function called
 \texttt{square()}. Which code correctly imports the module and
 calls the function?
 
-\choice{A}{\texttt{import math\_tools}\\ \texttt{math\_tools.square(5)}}
-\choice{B}{\texttt{import square}\\ \texttt{math\_tools(5)}}
-\choice{C}{\texttt{open math\_tools}\\ \texttt{square.math\_tools(5)}}
-\choice{D}{\texttt{module math\_tools}\\ \texttt{square(5)}}
+\choice{A}{
+\texttt{import math\_tools}\\
+\texttt{math\_tools.square(5)}
+}
+
+\choice{B}{
+\texttt{import square}\\
+\texttt{math\_tools(5)}
+}
+
+\choice{C}{
+\texttt{open math\_tools}\\
+\texttt{square.math\_tools(5)}
+}
+
+\choice{D}{
+\texttt{module math\_tools}\\
+\texttt{square(5)}
+}
+
+
+%---------------------------------------------------------
+% Question 17
+%---------------------------------------------------------
 
 \item Which code correctly imports only the function
 \texttt{square()}?
 
 \choice{A}{\texttt{import square from math\_tools}}
+
 \choice{B}{\texttt{from math\_tools import square}}
+
 \choice{C}{\texttt{from square import math\_tools}}
+
 \choice{D}{\texttt{math\_tools import(square)}}
+
+
+%---------------------------------------------------------
+% Question 18
+%---------------------------------------------------------
 
 \item Before a custom file such as
 
@@ -355,17 +509,25 @@ can be imported into a Google Colab session, what must normally
 be done?
 
 \choice{A}{Convert it to a PDF}
+
 \choice{B}{Upload the Python file to the Colab runtime}
+
 \choice{C}{Rename it with a \texttt{.txt} extension}
+
 \choice{D}{Place all functions inside \texttt{print()}}
 
 \end{enumerate}
+
 
 %=========================================================
 \section*{Strings and Searching}
 
 \begin{enumerate}
 \setcounter{enumi}{18}
+
+%---------------------------------------------------------
+% Question 19
+%---------------------------------------------------------
 
 \item What is the value of
 
@@ -378,24 +540,50 @@ be done?
 \choice{C}{Garcia}
 \choice{D}{An error occurs}
 
-\item Which condition performs a case-insensitive partial-name
-search?
+
+%---------------------------------------------------------
+% Question 20
+%---------------------------------------------------------
+
+\item A user is searching a patient database by entering a
+complete or partial patient name. The capitalization typed by the
+user may not match the capitalization stored in the database.  For example, the user might enter strings like \texttt{search = "garcia"}, \texttt{"Garcia"}, or \texttt{"GARCIA"}.  All three should be able to match \texttt{"Maria Garcia"}.  Which condition performs this case-insensitive partial-name search?
 
 \choice{A}{\texttt{search == patient[1]}}
+
 \choice{B}{\texttt{search in patient[1]}}
-\choice{C}{\texttt{search.lower() in patient[1].lower()}}
-\choice{D}{\texttt{search.upper() == patient[1].lower()}}
 
-\item A function searches every patient record but finds no
-matching patient ID. What value did our exercise specify should
-be returned?
+\choice{C}{
+\texttt{search.lower() in}\\
+\texttt{patient[1].lower()}
+}
 
-\choice{A}{0}
-\choice{B}{False}
-\choice{C}{""}
-\choice{D}{None}
+\choice{D}{
+\texttt{search.upper() ==}\\
+\texttt{patient[1].lower()}
+}
+
+
+%---------------------------------------------------------
+% Question 21
+%---------------------------------------------------------
+
+\item Consider the function
+
+\begin{verbatim}
+def is_adult(age):
+    return age >= 18
+\end{verbatim}
+
+What type of object does \texttt{is\_adult()} return?
+
+\choice{A}{\texttt{str}}
+\choice{B}{\texttt{int}}
+\choice{C}{\texttt{bool}}
+\choice{D}{\texttt{float}}
 
 \end{enumerate}
+
 
 %=========================================================
 \section*{Course Lists and Sorting}
@@ -403,13 +591,14 @@ be returned?
 \begin{enumerate}
 \setcounter{enumi}{21}
 
+%---------------------------------------------------------
+% Question 22
+%---------------------------------------------------------
+
 \item A course is stored as
 
 \begin{verbatim}
-course = [
- "PHYS", 100, "SLC", 202,
- "MWF", 1400
-]
+course = ["PHYS",100,"SLC",202,"MWF",1400]
 \end{verbatim}
 
 What is the value of \texttt{course[5]}?
@@ -419,12 +608,16 @@ What is the value of \texttt{course[5]}?
 \choice{C}{MWF}
 \choice{D}{1400}
 
+
+%---------------------------------------------------------
+% Question 23
+%---------------------------------------------------------
+
 \item Suppose
 
 \begin{verbatim}
 def get_time(course):
     return course[5]
-
 def sort_by_time(courses):
     courses.sort(key=get_time)
 \end{verbatim}
@@ -432,37 +625,56 @@ def sort_by_time(courses):
 What does \texttt{key=get\_time} tell Python to do?
 
 \choice{A}{Sort using the course meeting time}
+
 \choice{B}{Delete the meeting time}
+
 \choice{C}{Sort only courses named ``Time''}
+
 \choice{D}{Replace each course with its meeting time}
 
-\item Which time would appear first after sorting numerically?
+
+%---------------------------------------------------------
+% Question 24
+%---------------------------------------------------------
+
+\item Consider the list of course meeting times
 
 \begin{verbatim}
-930, 1400, 1100, 1530
+times = [930, 1400, 1100, 1530]
+times.sort()
 \end{verbatim}
 
-\choice{A}{930}
-\choice{B}{1100}
-\choice{C}{1400}
-\choice{D}{1530}
+Which list represents \texttt{times} after the numerical sort?
+
+\choice{A}{[930, 1100, 1400, 1530]}
+
+\choice{B}{[1530, 1400, 1100, 930]}
+
+\choice{C}{[930, 1400, 1100, 1530]}
+
+\choice{D}{[1100, 930, 1530, 1400]}
+
+
+%---------------------------------------------------------
+% Question 25
+%---------------------------------------------------------
 
 \item Consider these two courses:
 
 \begin{verbatim}
-["PHYS",100,"SLC",202,
- "MWF",1400]
-
-["MATH",200,"SLC",202,
- "TR",1400]
+["PHYS",100,"SLC",202,"MWF",1400]
+["MATH",200,"SLC",202,"TR",1400]
 \end{verbatim}
 
 Using the room-conflict rule from our course-schedule exercise,
 do these courses conflict?
 
 \choice{A}{Yes, because the room is the same}
+
 \choice{B}{Yes, because the time is the same}
+
 \choice{C}{No, because they do not share a meeting day}
+
 \choice{D}{No, because the course numbers are different}
 
 \end{enumerate}
