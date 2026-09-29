@@ -1,0 +1,478 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1.35cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\usepackage{array}
+
+\setlength{\columnsep}{0.65cm}
+\setlength{\parindent}{0pt}
+\setlist[enumerate]{leftmargin=*,itemsep=0.35em,topsep=0.25em}
+
+% Multiple-choice bubble
+\newcommand{\choice}[2]{%
+    \par\noindent
+    \(\bigcirc\)\ \textbf{#1.}\ #2
+}
+
+\newcommand{\bubblecell}[1]{\textbf{#1}\;\(\bigcirc\)A\;\(\bigcirc\)B\;\(\bigcirc\)C\;\(\bigcirc\)D}
+
+\begin{document}
+
+\begin{center}
+{\Large\bfseries COSC 120: Introduction to Python Programming}\\[2pt]
+{\large\bfseries In-Class Midterm Examination}\\[3pt]
+Prof. Jordan C. Hanson
+\end{center}
+
+\vspace{0.1cm}
+
+\noindent
+\textbf{Name:} \hrulefill
+\hspace{0.5cm}
+\textbf{Student ID:} \fbox{\rule{0pt}{1.8ex}\hspace{4cm}}
+
+\vspace{0.2cm}
+
+\noindent
+\textbf{Instructions:}
+Choose the best answer for each question.
+Fill in the circle next to exactly one answer, A--D.
+Each question is worth 4 points.
+
+\vspace{0.15cm}
+\hrule
+\vspace{0.2cm}
+
+\begin{center}
+{\large\bfseries Answer Sheet}
+\end{center}
+
+\small
+\renewcommand{\arraystretch}{1.3}
+\begin{center}
+\begin{tabular}{|m{0.18\textwidth}|m{0.18\textwidth}|m{0.18\textwidth}|m{0.18\textwidth}|m{0.18\textwidth}|}
+\hline
+\bubblecell{1} & \bubblecell{2} & \bubblecell{3} & \bubblecell{4} & \bubblecell{5} \\ \hline
+\bubblecell{6} & \bubblecell{7} & \bubblecell{8} & \bubblecell{9} & \bubblecell{10} \\ \hline
+\bubblecell{11} & \bubblecell{12} & \bubblecell{13} & \bubblecell{14} & \bubblecell{15} \\ \hline
+\bubblecell{16} & \bubblecell{17} & \bubblecell{18} & \bubblecell{19} & \bubblecell{20} \\ \hline
+\bubblecell{21} & \bubblecell{22} & \bubblecell{23} & \bubblecell{24} & \bubblecell{25} \\ \hline
+\end{tabular}
+\end{center}
+\normalsize
+
+\vspace{0.15cm}
+\hrule
+\vspace{0.25cm}
+
+\twocolumn
+
+%=========================================================
+\section*{Python Fundamentals}
+
+\begin{enumerate}
+
+\item What is printed by the following code?
+
+\begin{verbatim}
+x = 7
+y = 3
+print(x // y, x % y)
+\end{verbatim}
+
+\choice{A}{2 1}
+\choice{B}{2 3}
+\choice{C}{2.33 1}
+\choice{D}{3 1}
+
+\item What is printed?
+
+\begin{verbatim}
+x = 3.14159
+print(f"{x:.2f}")
+\end{verbatim}
+
+\choice{A}{3.1}
+\choice{B}{3.14}
+\choice{C}{3.142}
+\choice{D}{3.14159}
+
+\item Consider
+
+\begin{verbatim}
+student = ("Maya", 20681001, 5)
+\end{verbatim}
+
+What is the value of
+
+\begin{verbatim}
+student[2]
+\end{verbatim}
+
+\choice{A}{Maya}
+\choice{B}{20681001}
+\choice{C}{5}
+\choice{D}{An error occurs}
+
+\item What is the final value of \texttt{numbers}?
+
+\begin{verbatim}
+numbers = [1, 2]
+numbers.append(3)
+\end{verbatim}
+
+\choice{A}{[1, 2]}
+\choice{B}{[1, 2, 3]}
+\choice{C}{[3, 1, 2]}
+\choice{D}{1, 2, 3}
+
+\item What decimal value is produced by
+
+\begin{verbatim}
+int("1F", 16)
+\end{verbatim}
+
+\choice{A}{15}
+\choice{B}{16}
+\choice{C}{31}
+\choice{D}{32}
+
+\end{enumerate}
+
+%=========================================================
+\section*{Boolean Logic and Decisions}
+
+\begin{enumerate}
+\setcounter{enumi}{5}
+
+\item Consider the placement code
+
+\begin{verbatim}
+score = 3
+
+if score >= 4:
+    course = "Calculus"
+elif score >= 2:
+    course = "Trigonometry"
+else:
+    course = "Algebra"
+\end{verbatim}
+
+What is stored in \texttt{course}?
+
+\choice{A}{Calculus}
+\choice{B}{Trigonometry}
+\choice{C}{Algebra}
+\choice{D}{Nothing}
+
+\item What is the value of
+
+\begin{verbatim}
+True or False and False
+\end{verbatim}
+
+Recall that \texttt{and} is evaluated before \texttt{or}.
+
+\choice{A}{True}
+\choice{B}{False}
+\choice{C}{0}
+\choice{D}{An error occurs}
+
+\item A screening function contains
+
+\begin{verbatim}
+age > 70 and
+weight > 200 and
+gender == "M"
+\end{verbatim}
+
+Which patient satisfies the condition?
+
+\choice{A}{Male, age 70, weight 210}
+\choice{B}{Male, age 75, weight 195}
+\choice{C}{Female, age 75, weight 220}
+\choice{D}{Male, age 75, weight 220}
+
+\end{enumerate}
+
+%=========================================================
+\section*{Loops and Nested Lists}
+
+\begin{enumerate}
+\setcounter{enumi}{8}
+
+\item What values are printed?
+
+\begin{verbatim}
+for i in range(1, 4):
+    print(i)
+\end{verbatim}
+
+\choice{A}{0, 1, 2, 3}
+\choice{B}{1, 2, 3}
+\choice{C}{1, 2, 3, 4}
+\choice{D}{0, 1, 2}
+
+\item How many times does this loop execute?
+
+\begin{verbatim}
+i = 0
+
+while i < 3:
+    print(i)
+    i = i + 1
+\end{verbatim}
+
+\choice{A}{2}
+\choice{B}{3}
+\choice{C}{4}
+\choice{D}{The loop never stops}
+
+\item Consider
+
+\begin{verbatim}
+for i in range(len(courses)):
+
+    for j in range(i + 1,
+                   len(courses)):
+        ...
+\end{verbatim}
+
+Why does the inner loop begin at \texttt{i + 1}?
+
+\choice{A}{To skip every other course}
+\choice{B}{To compare each course only with itself}
+\choice{C}{To avoid comparing a pair twice and avoid comparing a course with itself}
+\choice{D}{Because Python lists begin at index 1}
+
+\item Consider the matrix
+
+\begin{verbatim}
+A = [
+ [4, 8, 2],
+ [7, 5, 9],
+ [1, 6, 3]
+]
+\end{verbatim}
+
+What is the value of
+
+\begin{verbatim}
+A[1][2]
+\end{verbatim}
+
+\choice{A}{5}
+\choice{B}{7}
+\choice{C}{9}
+\choice{D}{6}
+
+\end{enumerate}
+
+%=========================================================
+\section*{Functions}
+
+\begin{enumerate}
+\setcounter{enumi}{12}
+
+\item Consider
+
+\begin{verbatim}
+def square(x):
+    return x * x
+
+square(5)
+\end{verbatim}
+
+Which statement is correct?
+
+\choice{A}{\texttt{x} is the argument and 5 is the parameter}
+\choice{B}{\texttt{x} is the parameter and 5 is the argument}
+\choice{C}{Both \texttt{x} and 5 are parameters}
+\choice{D}{Neither is a parameter}
+
+\item Why is \texttt{return} useful in a function such as
+
+\begin{verbatim}
+def find_patient(...):
+    ...
+    return patient
+\end{verbatim}
+
+\choice{A}{It permanently prints the patient}
+\choice{B}{It sends a value back to the calling code}
+\choice{C}{It automatically creates a loop}
+\choice{D}{It imports another module}
+
+\item In our Fourier-series exercise, the functions were
+organized as
+
+\begin{verbatim}
+plot_series()
+sawtooth()
+fourier_term()
+\end{verbatim}
+
+Which call sequence correctly describes the program?
+
+\choice{A}{\texttt{fourier\_term()} $\rightarrow$ \texttt{sawtooth()} $\rightarrow$ \texttt{plot\_series()}}
+\choice{B}{\texttt{plot\_series()} $\rightarrow$ \texttt{sawtooth()} $\rightarrow$ \texttt{fourier\_term()}}
+\choice{C}{\texttt{sawtooth()} $\rightarrow$ \texttt{plot\_series()} $\rightarrow$ \texttt{fourier\_term()}}
+\choice{D}{None of the functions call one another}
+
+\end{enumerate}
+
+%=========================================================
+\section*{Modules}
+
+\begin{enumerate}
+\setcounter{enumi}{15}
+
+\item Suppose \texttt{math\_tools.py} contains a function called
+\texttt{square()}. Which code correctly imports the module and
+calls the function?
+
+\choice{A}{\texttt{import math\_tools}\\ \texttt{math\_tools.square(5)}}
+\choice{B}{\texttt{import square}\\ \texttt{math\_tools(5)}}
+\choice{C}{\texttt{open math\_tools}\\ \texttt{square.math\_tools(5)}}
+\choice{D}{\texttt{module math\_tools}\\ \texttt{square(5)}}
+
+\item Which code correctly imports only the function
+\texttt{square()}?
+
+\choice{A}{\texttt{import square from math\_tools}}
+\choice{B}{\texttt{from math\_tools import square}}
+\choice{C}{\texttt{from square import math\_tools}}
+\choice{D}{\texttt{math\_tools import(square)}}
+
+\item Before a custom file such as
+
+\begin{verbatim}
+course_tools.py
+\end{verbatim}
+
+can be imported into a Google Colab session, what must normally
+be done?
+
+\choice{A}{Convert it to a PDF}
+\choice{B}{Upload the Python file to the Colab runtime}
+\choice{C}{Rename it with a \texttt{.txt} extension}
+\choice{D}{Place all functions inside \texttt{print()}}
+
+\end{enumerate}
+
+%=========================================================
+\section*{Strings and Searching}
+
+\begin{enumerate}
+\setcounter{enumi}{18}
+
+\item What is the value of
+
+\begin{verbatim}
+"Garcia" in "Maria Garcia"
+\end{verbatim}
+
+\choice{A}{True}
+\choice{B}{False}
+\choice{C}{Garcia}
+\choice{D}{An error occurs}
+
+\item Which condition performs a case-insensitive partial-name
+search?
+
+\choice{A}{\texttt{search == patient[1]}}
+\choice{B}{\texttt{search in patient[1]}}
+\choice{C}{\texttt{search.lower() in patient[1].lower()}}
+\choice{D}{\texttt{search.upper() == patient[1].lower()}}
+
+\item A function searches every patient record but finds no
+matching patient ID. What value did our exercise specify should
+be returned?
+
+\choice{A}{0}
+\choice{B}{False}
+\choice{C}{""}
+\choice{D}{None}
+
+\end{enumerate}
+
+%=========================================================
+\section*{Course Lists and Sorting}
+
+\begin{enumerate}
+\setcounter{enumi}{21}
+
+\item A course is stored as
+
+\begin{verbatim}
+course = [
+ "PHYS", 100, "SLC", 202,
+ "MWF", 1400
+]
+\end{verbatim}
+
+What is the value of \texttt{course[5]}?
+
+\choice{A}{SLC}
+\choice{B}{202}
+\choice{C}{MWF}
+\choice{D}{1400}
+
+\item Suppose
+
+\begin{verbatim}
+def get_time(course):
+    return course[5]
+
+def sort_by_time(courses):
+    courses.sort(key=get_time)
+\end{verbatim}
+
+What does \texttt{key=get\_time} tell Python to do?
+
+\choice{A}{Sort using the course meeting time}
+\choice{B}{Delete the meeting time}
+\choice{C}{Sort only courses named ``Time''}
+\choice{D}{Replace each course with its meeting time}
+
+\item Which time would appear first after sorting numerically?
+
+\begin{verbatim}
+930, 1400, 1100, 1530
+\end{verbatim}
+
+\choice{A}{930}
+\choice{B}{1100}
+\choice{C}{1400}
+\choice{D}{1530}
+
+\item Consider these two courses:
+
+\begin{verbatim}
+["PHYS",100,"SLC",202,
+ "MWF",1400]
+
+["MATH",200,"SLC",202,
+ "TR",1400]
+\end{verbatim}
+
+Using the room-conflict rule from our course-schedule exercise,
+do these courses conflict?
+
+\choice{A}{Yes, because the room is the same}
+\choice{B}{Yes, because the time is the same}
+\choice{C}{No, because they do not share a meeting day}
+\choice{D}{No, because the course numbers are different}
+
+\end{enumerate}
+
+\vfill
+
+\begin{center}
+\textbf{End of Exam}
+
+Check that exactly one answer is clearly marked for each question.
+\end{center}
+
+\end{document}
