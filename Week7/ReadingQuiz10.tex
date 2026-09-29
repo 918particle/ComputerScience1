@@ -1,0 +1,105 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage[margin=1.5cm]{geometry}
+\usepackage{amsmath}
+
+\begin{document}
+\twocolumn
+
+\title{Chapters 1-9 Warm-Up: Review}
+\author{Prof. Jordan C. Hanson}
+
+\maketitle
+
+\section{Review Exercises}
+
+\begin{enumerate}
+\item Write a program that produces the following table of contents:
+\begin{verbatim}
+Python Programming: A First Course
+
+Chapter 1: Getting Started....................1
+Chapter 2: Variables and Data Types..........17
+Chapter 3: Making Decisions..................35
+Chapter 4: Repeating with Loops..............57
+Chapter 5: Writing Functions.................81
+\end{verbatim}
+\item Write a program that collects information about a student:
+
+\begin{verbatim}
+score = int(input("Score: "))
+sub = input("Submitted? yes/no: ") == "yes"
+att = input("Attendance OK? yes/no: ") == "yes"
+\end{verbatim}
+Create the Boolean variable
+\begin{verbatim}
+ready = sub and att
+\end{verbatim}
+and use it in the following chained decision:
+\begin{verbatim}
+if score >= 90 and ready:
+    print("Excellent")
+elif score >= 70 and ready:
+    print("Pass")
+elif not sub or not att:
+    print("Incomplete")
+else:
+    print("Revise")
+\end{verbatim}
+Run the program several times.  Find inputs that cause each of the four branches to execute.
+\item Define the following \textit{diagonal} matrix:
+\begin{verbatim}
+A = [
+    [1, 0, 0],
+    [0, 1, 0],
+    [0, 0, 1]
+]
+\end{verbatim}
+Suppose we did not know the matrix was diagonal.  Create nested \verb+for+ loops and conditional logic that demonstrate the matrix is diagonal.  For example:
+\begin{verbatim}
+is_diagonal = True
+for row in range(2):
+    for column in range(3):
+        if(...):
+        		is_diagonal = False
+        	...
+\end{verbatim}
+\item Define a function that evaluates $f(x) = \sin(x)^2 + \cos(x)^2$, and show that it is always 1, regardless of the input $x$.
+\item Suppose a patient record is represented by a list:
+\begin{verbatim}
+patient = [1042,"Maria Garcia",37]
+\end{verbatim}
+The entries represent the patient ID, name, and age. Write a function
+\begin{verbatim}
+def display_patient(patient):
+    # your code here
+\end{verbatim}
+that prints the record in the form
+\begin{verbatim}
+ID: 1042
+Name: Maria Garcia
+Age: 37
+\end{verbatim}
+\item Several course records can be stored inside one master list:
+\begin{verbatim}
+courses = [
+ ["PHYS", 100, "SLC", 202],
+ ["MATH", 150, "SLC", 105],
+ ["BIOL", 101, "SLC", 210],
+ ["PHYS", 200, "SLC", 202]
+]
+\end{verbatim}
+Lists can be sorted using \texttt{sort()}. Define
+\begin{verbatim}
+def sort_courses(courses):
+    courses.sort()
+\end{verbatim}
+Then run
+\begin{verbatim}
+sort_courses(courses)
+for course in courses:
+    print(course)
+\end{verbatim}
+\end{enumerate}
+
+\end{document}

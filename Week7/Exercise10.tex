@@ -1,0 +1,93 @@
+\documentclass{article}
+\usepackage[margin=1.5cm]{geometry}
+\usepackage{amsmath}
+\usepackage{enumitem}
+
+\setlist{nosep,leftmargin=*}
+
+\begin{document}
+\twocolumn
+
+\title{Chapters 1-9 Cumulative In-Class Exercise: Create a Game!}
+\author{Prof. Jordan C. Hanson}
+\date{}
+
+\maketitle
+
+\noindent
+\textbf{Goal.} Create a turn-based text game on a $10\times10$ board. The player begins with a health score and moves one square per turn by typing exactly \texttt{up}, \texttt{down}, \texttt{left}, or \texttt{right}.  After every valid move, display the player's current coordinate \texttt{(i,j)} and health. The game ends when health reaches either \textbf{0} or the specified maximum health. \\ \\
+\noindent
+\textbf{Board representation.} The board is a nested list. Each cell contains a tuple \texttt{treasures},\texttt{enemies}).  Thus \texttt{board[i][j]} gives the contents of row \texttt{i}, column \texttt{j}. Each treasure adds one health point and each enemy subtracts one health point.  For example, \texttt{(1,0)} contains one treasure, while \texttt{(0,2)} contains two enemies. \\ \\
+\noindent
+\textbf{Starter board data.} Copy this into \texttt{game.py}:
+
+\begin{verbatim}
+board = [
+ [(0,0),(0,1),(1,0),(0,0),(0,0),
+  (0,1),(0,0),(1,0),(0,0),(0,0)],
+ [(0,0),(1,0),(0,0),(0,1),(0,0),
+  (0,0),(0,0),(0,1),(1,0),(0,0)],
+ [(0,1),(0,0),(0,0),(1,0),(0,0),
+  (0,0),(0,1),(0,0),(0,0),(1,0)],
+ [(0,0),(0,0),(0,1),(0,0),(1,0),
+  (0,0),(0,0),(0,0),(0,1),(0,0)],
+ [(1,0),(0,0),(0,0),(0,1),(0,0),
+  (0,0),(1,0),(0,0),(0,0),(0,1)],
+ [(0,0),(0,1),(0,0),(0,0),(0,0),
+  (1,0),(0,0),(0,1),(0,0),(0,0)],
+ [(0,0),(0,0),(1,0),(0,0),(0,1),
+  (0,0),(0,0),(0,0),(1,0),(0,0)],
+ [(0,1),(0,0),(0,0),(0,0),(1,0),
+  (0,0),(0,1),(0,0),(0,0),(0,0)],
+ [(0,0),(1,0),(0,0),(0,1),(0,0),
+  (0,0),(0,0),(1,0),(0,0),(0,1)],
+ [(0,0),(0,0),(0,1),(0,0),(0,0),
+  (1,0),(0,0),(0,0),(1,0),(0,0)]
+]
+\end{verbatim}
+\noindent
+\textbf{Helper module.}  Create a second file named \texttt{game\_tools.py}. Write two functions:
+
+\begin{enumerate}[leftmargin=*,itemsep=1pt]
+\item \texttt{move\_player(i,j,direction)} receives the current row, column, and direction. It returns the proposed new \texttt{(i,j)} coordinate. Do not allow either index to leave the range $0$--$9$.
+\item \texttt{resolve\_health(health,cell,max\_health)} receives the current health and a cell tuple. Add the number of treasures and subtract the number of enemies. Do not allow health to exceed \texttt{max\_health}.
+\end{enumerate} \vspace{0.5cm}
+\noindent
+\textbf{Complete the game loop.}  Begin with the following:
+
+\begin{verbatim}
+	from game_tools import move_player
+	from game_tools import resolve_health
+	i = 0
+	j = 0
+	health = 3
+	max_health = 6
+	while health > 0 and health < max_health:
+	    direction = input("up/down/left/right: ").lower()
+		# 1. Validate the user's input.
+		# 2. Update i and j using move_player().
+		# 3. Access the current cell: cell = board[i][j]
+		# 4. Update health using resolve_health().
+		# 5. Print (i,j) and the health score.
+	# Print an appropriate final message.
+\end{verbatim}
+\noindent
+\textbf{Requirements.} Your completed program should demonstrate:
+
+\begin{enumerate}[leftmargin=*,itemsep=1pt]
+\item variables and arithmetic;
+\item \texttt{input()} and \texttt{print()};
+\item \texttt{if}/\texttt{elif}/\texttt{else};
+\item a \texttt{while} loop;
+\item functions with parameters and return values;
+\item importing functions from a module;
+\item lists, nested lists, tuples, and indexing;
+\item string comparison and the \texttt{.lower()} method.
+\end{enumerate} \vspace{0.5cm}
+\noindent
+\textbf{Test your program.} Try deliberately entering an invalid command and trying to move beyond each edge of the board. Confirm that the program does not crash and that the coordinate always remains between \texttt{(0,0)} and \texttt{(9,9)}. \\ \\
+\noindent
+\textbf{Challenge.}
+Prevent a treasure or enemy from affecting the player's health more than once after that square has already been visited.
+
+\end{document}
