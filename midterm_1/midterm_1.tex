@@ -16,12 +16,14 @@
 }
 
 % Compact answer-sheet bubble row
+% Reduced font size so A--D fit on one line in each table cell.
 \newcommand{\bubblecell}[1]{%
+    {\scriptsize
     \textbf{#1}\;
     \(\bigcirc\)A\;
     \(\bigcirc\)B\;
     \(\bigcirc\)C\;
-    \(\bigcirc\)D
+    \(\bigcirc\)D}%
 }
 
 \begin{document}
@@ -124,10 +126,10 @@ y = 3
 print(x / y, x % y)
 \end{verbatim}
 
-\choice{A}{2.3333333333333335 1}
+\choice{A}{2.3333333 1}
 \choice{B}{2 1}
 \choice{C}{2.33 1}
-\choice{D}{2.3333333333333335 0}
+\choice{D}{2.3333333 0}
 
 
 %---------------------------------------------------------
@@ -349,18 +351,10 @@ course with itself}
 \item Consider the matrix
 
 \begin{verbatim}
-A = [
- [4, 8, 2],
- [7, 5, 9],
- [1, 6, 3]
-]
+A = [[4, 8, 2],[7, 5, 9],[1, 6, 3]]
 \end{verbatim}
 
-What is the value of
-
-\begin{verbatim}
-A[1][2]
-\end{verbatim}
+What is the value of \texttt{A[1][2]}?
 
 \choice{A}{5}
 \choice{B}{7}
@@ -545,9 +539,7 @@ be done?
 % Question 20
 %---------------------------------------------------------
 
-\item A user is searching a patient database by entering a
-complete or partial patient name. The capitalization typed by the
-user may not match the capitalization stored in the database.  For example, the user might enter strings like \texttt{search = "garcia"}, \texttt{"Garcia"}, or \texttt{"GARCIA"}.  All three should be able to match \texttt{"Maria Garcia"}.  Which condition performs this case-insensitive partial-name search?
+\item A user is searching a database using a partial name. For example, the user might enter strings like \texttt{search = "garcia"}, \texttt{"Garcia"}, or \texttt{"GARCIA"}.  All three should match \texttt{"Maria Garcia"}.  Which statement does this?
 
 \choice{A}{\texttt{search == patient[1]}}
 
