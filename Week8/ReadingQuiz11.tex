@@ -1,0 +1,163 @@
+\documentclass{article}
+\usepackage[margin=1.5cm]{geometry}
+\usepackage{amsmath}
+\usepackage{enumitem}
+
+\setlist{nosep,leftmargin=*}
+
+\begin{document}
+\twocolumn
+
+\title{Chapter 10 Warm-Up: Dictionaries and a Phone Book}
+\author{Prof. Jordan C. Hanson}
+\date{}
+
+\maketitle
+
+\section{Dictionary Basics}
+
+\begin{enumerate}
+
+\item A Python dictionary stores information as \textbf{key--value pairs}. Consider
+
+\begin{verbatim}
+phone_book = {
+ "562-555-0142": "Maria Garcia",
+ "562-555-0188": "Daniel Kim",
+ "562-555-0125": "Elena Garcia",
+ "562-555-0171": "Maria Lopez",
+ "562-555-0194": "Aisha Patel"
+}
+\end{verbatim}
+
+Each phone number is a \textbf{key}.  The corresponding name is its \textbf{value}.  What is printed by
+
+\begin{verbatim}
+print(phone_book["562-555-0188"])
+\end{verbatim}
+
+\vspace{0.1cm}
+
+Why is it useful for each dictionary key to be unique?
+
+\end{enumerate}
+
+
+\section{Creating and Adding Entries}
+
+\begin{enumerate}
+
+\item An empty dictionary can be created using
+
+\begin{verbatim}
+phone_book = {}
+\end{verbatim}
+
+A new key--value pair can then be added:
+
+\begin{verbatim}
+phone_book["562-555-0142"] = "Maria Garcia"
+\end{verbatim}
+
+Add another entry:
+
+\begin{verbatim}
+phone_book["562-555-0188"] = "Daniel Kim"
+\end{verbatim}
+
+Print the entire dictionary:
+
+\begin{verbatim}
+print(phone_book)
+\end{verbatim}
+
+What happens if you assign a new value to a key that already exists?
+
+\end{enumerate}
+
+
+\section{Dictionary Operations}
+
+\begin{enumerate}
+
+\item The method \texttt{phone\_book.keys()} returns the dictionary keys. The method \texttt{phone\_book.values()} returns the values. The method \texttt{phone\_book.items()} provides the key and value together.  For our phone book \texttt{(phone, name)} represent one key--value pair.
+
+\end{enumerate}
+
+
+\section{Searching by Name}
+
+\begin{enumerate}
+
+\item We can combine dictionaries with the string-searching
+techniques from Chapter 8.  Begin with
+
+\begin{verbatim}
+search = input("Enter first/last name, or both: ")
+\end{verbatim}
+
+Then examine each entry:
+
+\begin{verbatim}
+for phone, name in phone_book.items():
+    if search.lower() in name.lower():
+        print(name, phone)
+\end{verbatim}
+
+Predict the output when the user enters
+
+\begin{verbatim}
+Garcia
+\end{verbatim}
+
+How many phone numbers should be printed?
+
+\end{enumerate}
+
+
+\section{Put the Search in a Function}
+
+\begin{enumerate}
+
+\item Write a function that returns all matching phone numbers:
+
+\begin{verbatim}
+def find_numbers(phone_book,search):
+    matches = []
+    ...
+    return matches
+\end{verbatim}
+
+Test the function:
+
+\begin{verbatim}
+print(find_numbers(phone_book,"Maria"))
+\end{verbatim}
+
+Which phone numbers should be returned?
+
+\end{enumerate}
+
+
+\section{Warm-Up Exercise}
+
+Using the original five-entry dictionary, predict the result of
+each search before running the program:
+
+\begin{verbatim}
+find_numbers(phone_book,"Garcia")
+find_numbers(phone_book,"Maria")
+find_numbers(phone_book,"Daniel Kim")
+find_numbers(phone_book,"Johnson")
+\end{verbatim}
+
+\noindent
+Answer the following:
+\begin{itemize}
+\item Which search returns two phone numbers?
+\item Which search uses both a first and last name?
+\item What does the function return when there are no matches?
+\item Why is a list used for \texttt{matches} instead of returning the first phone number immediately?
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,146 @@
+\documentclass{article}
+\usepackage[margin=1.5cm]{geometry}
+\usepackage{amsmath}
+\usepackage{enumitem}
+
+\setlist{nosep,leftmargin=*}
+
+\begin{document}
+\twocolumn
+
+\title{Chapter 10 In-Class Exercise: Building a Phone-Book Search}
+\author{Prof. Jordan C. Hanson}
+\date{}
+
+\maketitle
+
+\section{Step 1: Organize the Dictionary}
+
+We will store each phone number as a dictionary key.  The value
+will be a list containing the person's first and last name.
+
+\begin{verbatim}
+phone_book = {
+    "562-555-0142": ["Maria", "Garcia"],
+    "562-555-0188": ["Daniel", "Kim"],
+    "562-555-0125": ["Elena", "Garcia"],
+    "562-555-0171": ["Maria", "Lopez"],
+    "562-555-0194": ["Aisha", "Patel"]
+}
+\end{verbatim}
+\noindent
+For one entry,
+\begin{verbatim}
+phone = "562-555-0142"
+person = phone_book[phone]
+\end{verbatim}
+\noindent
+Check the following for one entry: \texttt{person[0]} and \\ \texttt{person[1]}.
+
+\section{Step 2: Add a Contact}
+
+Write a function that adds a new entry:
+
+\begin{verbatim}
+def add_contact(ph_book,phone,first,last):
+    ph_book[phone] = [first, last]
+\end{verbatim}
+\noindent
+Test it with
+\begin{verbatim}
+add_contact(
+    ph_book,
+    "562-555-0110",
+    Marcus","Johnson"
+)
+\end{verbatim}
+\noindent
+Print the contents of \texttt{ph\_book} to check it.
+
+\section{Step 3: Search by First Name}
+
+Write a function that returns every phone number belonging to a given first name:
+
+\begin{verbatim}
+def search_first(phone_book,first):
+    ...
+    return matches
+\end{verbatim}
+
+\noindent
+Test your function with a search.
+
+\section{Step 4: Search by Last Name}
+
+Complete the following function:
+
+\begin{verbatim}
+def search_last(phone_book,last):
+    ...
+    return matches
+\end{verbatim}
+
+\noindent
+Test your function with a search.
+
+\section{Step 5: Search a Full Name}
+
+Write a third search function:
+
+\begin{verbatim}
+def search_name(phone_book,first,last):
+    ...
+    return matches
+\end{verbatim}
+
+\noindent
+Test your function with a search.
+
+\section{Step 6: Put It Together}
+
+Write a short main program:
+
+\begin{verbatim}
+print("Phone Book Search")
+print("1 - First name")
+print("2 - Last name")
+print("3 - Full name")
+
+choice = input("Choose a search: ")
+\end{verbatim}
+
+Use an \texttt{if}/\texttt{elif} statement to
+
+\begin{itemize}
+\item ask for the appropriate name information,
+\item call the correct search function, and
+\item store the returned list in \texttt{matches}.
+\end{itemize}
+
+Finally,
+
+\begin{verbatim}
+print("Phone numbers:")
+
+for phone in matches:
+    print(phone)
+\end{verbatim}
+
+
+\section{Challenge}
+
+If
+
+\begin{verbatim}
+len(matches) == 0
+\end{verbatim}
+
+print
+
+\begin{verbatim}
+No matching contacts found.
+\end{verbatim}
+
+Otherwise, print the number of matches found.
+
+\end{document}
