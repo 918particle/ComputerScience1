@@ -1,0 +1,158 @@
+\documentclass{article}
+\usepackage[margin=1.5cm]{geometry}
+\usepackage{amsmath}
+\usepackage{enumitem}
+
+\setlist{nosep,leftmargin=*}
+
+\begin{document}
+\twocolumn
+
+\title{Chapter 10 In-Class Exercise: Which Lookup Is Faster?}
+\author{Prof. Jordan C. Hanson}
+\date{}
+
+\maketitle
+
+\section{Build a Large Student Roster}
+
+Suppose student IDs begin at
+
+\begin{verbatim}
+first = 2601001
+N = 10000
+\end{verbatim}
+\noindent
+Create a list of student names:
+
+\begin{verbatim}
+names = ["Student_"+str(i) for i in range(N)]
+\end{verbatim}
+\noindent
+Now represent exactly the same information in two ways.  First, create a \textbf{nested list}:
+\begin{verbatim}
+student_list = 
+[
+    [first+i, names[i]] for i in range(N)
+]
+\end{verbatim}
+\noindent
+Then create a \textbf{dictionary}:
+\begin{verbatim}
+student_dict = 
+{
+    first+i: names[i] for i in range(N)
+}
+\end{verbatim}
+\noindent
+Both structures contain the same ID--name pairs.
+
+\section{Lookup Using a Nested List}
+
+To find a student in the nested list, Python must examine records until it finds the correct ID.
+
+\begin{verbatim}
+def list_lookup(students,target_id):
+    for student in students:
+        if student[0] == target_id:
+            return student[1]
+    return None
+\end{verbatim}
+\noindent
+Test the function:
+
+\begin{verbatim}
+target_id = first_id + N - 1
+print(list_lookup(student_list,target_id))
+\end{verbatim}
+
+\section{Lookup Using a Dictionary}
+
+A dictionary uses the student ID directly as a key:
+
+\begin{verbatim}
+def dict_lookup(students,target_id):
+    return students.get(target_id)
+\end{verbatim}
+\noindent
+Test it:
+
+\begin{verbatim}
+print(dict_lookup(student_dict,target_id))
+\end{verbatim}
+\noindent
+Which method is faster?
+
+\section{Measuring Execution Time}
+
+Python's \texttt{time} module contains a high-resolution timer called \texttt{perf\_counter()}.  Begin with \texttt{import time}.  A single lookup happens so quickly that it may be difficult to measure accurately. Therefore, repeat the lookup many times.
+
+\begin{verbatim}
+repeats = 1000
+\end{verbatim}
+\noindent
+Time the nested-list lookup:
+
+\begin{verbatim}
+start = time.perf_counter()
+for i in range(repeats):
+    list_lookup(student_list,target_id)
+end = time.perf_counter()
+list_time = end - start
+\end{verbatim}
+\noindent
+Now time the dictionary:
+
+\begin{verbatim}
+start = time.perf_counter()
+
+for i in range(repeats):
+    dict_lookup(student_dict,target_id)
+end = time.perf_counter()
+dict_time = end - start
+\end{verbatim}
+\noindent
+Display the results:
+
+\begin{verbatim}
+print("List:", list_time)
+print("Dictionary:", dict_time)
+\end{verbatim}
+
+\section{Compare the Results}
+
+Compute how many times faster one method is:
+
+\begin{verbatim}
+ratio = list_time / dict_time
+print("Ratio:", ratio)
+\end{verbatim}
+\noindent
+Record your results:
+
+\[
+t_{\mathrm{list}} = \underline{\hspace{2.2cm}}
+\]
+
+\[
+t_{\mathrm{dict}} = \underline{\hspace{2.2cm}}
+\]
+
+\[
+\frac{t_{\mathrm{list}}}
+     {t_{\mathrm{dict}}}
+=
+\underline{\hspace{2.2cm}}
+\]
+\noindent
+Repeat the experiment using
+
+\begin{verbatim}
+N = 100
+N = 1000
+N = 10000
+\end{verbatim}
+
+For each value of \(N\), search for the \textbf{last} student.
+
+\end{document}

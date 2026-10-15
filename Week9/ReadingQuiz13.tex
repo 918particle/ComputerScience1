@@ -1,0 +1,118 @@
+\documentclass{article}
+\usepackage[margin=1.5cm]{geometry}
+\usepackage{amsmath}
+\usepackage{enumitem}
+
+\setlist{nosep,leftmargin=*}
+
+\begin{document}
+\twocolumn
+
+\title{Chapter 11 Warm-Up: From Dictionaries to Classes}
+\author{Prof. Jordan C. Hanson}
+\date{}
+
+\maketitle
+
+\section{Review: Dictionary Basics}
+
+A Python dictionary stores information as key--value pairs. For example,
+
+\begin{verbatim}
+students = {2601001: "Ana", 2601002: "Ben"}
+\end{verbatim}
+\noindent
+Here, each student ID is a \textbf{key} and each name is its corresponding \textbf{value}.  What is printed by  \\ \texttt{print(students[2601002])}?  Add to the dictionary a student named Diego with ID 2601008.  A dictionary is useful when we want to associate one piece of information with another. A \textbf{class} goes further: it lets us define a new kind of object that can store several pieces of information and also define what that object can \textbf{do}.
+
+\section{Complex Numbers}
+
+A complex number has a \textbf{real part} and an \textbf{imaginary part}:
+
+\begin{equation}
+z = a + bj
+\end{equation}
+
+where
+
+\begin{equation}
+j^2 = -1
+\end{equation}
+
+To add complex numbers, add real parts together and imaginary parts together:
+
+\[
+(a+bi)+(c+di)
+=
+(a+c)+(b+d)i.
+\]
+
+Subtraction works the same way:
+
+\[
+(a+bi)-(c+di)
+=
+(a-c)+(b-d)i.
+\]
+
+\section{A Class for Complex Numbers}
+
+We can create our own Python class that stores the real and
+imaginary parts of a complex number.
+
+\begin{verbatim}
+class ComplexNumber:
+    def __init__(self, real, imag):
+        self.real = real
+        self.imag = imag
+\end{verbatim}
+
+Now we can create two \textbf{instances}:
+
+\begin{verbatim}
+z1 = ComplexNumber(3, 2)
+z2 = ComplexNumber(5, -4)
+\end{verbatim}
+
+For \texttt{z1}, the values are
+
+\begin{verbatim}
+z1.real  ->  3
+z1.imag  ->  2
+\end{verbatim}
+
+In your own words, what does \texttt{self} represent?
+
+\section{Teaching the Class to Add and Subtract}
+
+Normally Python does not know how two objects of a new class should be added. We can define that behavior with the special method \texttt{\_\_add\_\_()}:
+
+\begin{verbatim}
+class ComplexNumber:
+    def __init__(self, real, imag):
+        self.real = real
+        self.imag = imag
+
+    def __add__(self, other):
+        return ComplexNumber(
+            self.real + other.real,
+            self.imag + other.imag
+        )
+\end{verbatim}
+
+Now Python understands
+
+\begin{verbatim}
+z3 = z1 + z2
+\end{verbatim}
+
+because \texttt{\_\_add\_\_()} tells Python what the \(+\) operator means for two \texttt{ComplexNumber} objects.  Now add a \texttt{\_\_sub\_\_()} method so that Python understands knows what the \(-\) means.
+
+\section{Check Your Understanding}
+
+\begin{enumerate}
+\item Let $z_1 = 2+2j$, and $z_2 = 2-2j$.  Using your class, compute (a) $z_1 + z_2$, and (b) $z_1 - z_2$.
+\item Let $z_1 = 3+0j$, and $z_2 = 0+3j$.  Using your class, compute (a) $z_1 + z_2$, and (b) $z_1 - z_2$.
+\item How would you define a method within your \verb+ComplexNumbers+ class to handle \textit{multiplication}?
+\end{enumerate}
+
+\end{document}

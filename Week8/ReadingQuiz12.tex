@@ -1,0 +1,144 @@
+\documentclass{article}
+\usepackage[margin=1.5cm]{geometry}
+\usepackage{amsmath}
+\usepackage{enumitem}
+
+\setlist{nosep,leftmargin=*}
+
+\begin{document}
+\twocolumn
+
+\title{Chapter 10 Warm-Up: List and Dictionary Comprehensions}
+\author{Prof. Jordan C. Hanson}
+\date{}
+
+\maketitle
+
+\section{A List of Student Names}
+
+Suppose we are given a list of student names:
+
+\begin{verbatim}
+names = ["Ana","Ben","Chloe","Diego","Elena"]
+\end{verbatim}
+\noindent
+Student IDs begin with the eight-digit number \texttt{02601001} and are assigned sequentially.  Thus, the first student receives ID \texttt{02601001}, the second receives \texttt{02601002}, etc.
+
+\section{Generating IDs with a Loop}
+
+One way to create the student IDs is
+
+\begin{verbatim}
+st_ids = []
+first = 02601001
+for i in range(len(names)):
+    st_ids.append(first + i)
+\end{verbatim}
+
+\begin{enumerate}
+\item What values does \texttt{i} take?
+\item Predict the contents of \texttt{student\_ids}.
+\item Why is \texttt{len(names)} useful here?
+\end{enumerate}
+
+\section{List Comprehension}
+
+Python can express the same operation more compactly:
+
+\begin{verbatim}
+st_ids = [first+i for i in range(len(names))]
+\end{verbatim}
+\noindent
+This is called a \textbf{list comprehension}, with the pattern
+
+\begin{verbatim}
+[expression for item in sequence]
+\end{verbatim}
+\noindent
+For each value of \texttt{i}, Python evaluates \texttt{first+i} and places the result into the list.
+
+\section{Building a Student Dictionary}
+
+Now suppose we want a dictionary in which
+
+\begin{itemize}
+\item the \textbf{student ID} is the key, and
+\item the \textbf{student name} is the value.
+\end{itemize}
+\noindent
+Using an ordinary loop:
+
+\begin{verbatim}
+students = {}
+for i, name in enumerate(names):
+    students[first+i] = name
+\end{verbatim}
+\noindent
+The dictionary will contain entries such as
+
+\begin{verbatim}
+{
+ 2601001: "Ana",
+ 2601002: "Ben",
+ 2601003: "Chloe",
+ ...
+}
+\end{verbatim}
+\noindent
+The function \texttt{enumerate(names)} provides both the index and the name for each student.
+
+\section{Dictionary Comprehension}
+
+The entire dictionary can instead be created with
+
+\begin{verbatim}
+students = {
+    first+i: name
+    for i, name in enumerate(names)
+}
+\end{verbatim}
+\noindent
+This is a \textbf{dictionary comprehension}, with the pattern
+
+\begin{verbatim}
+{
+ key_expression: value_expression
+ for item in sequence
+}
+\end{verbatim}
+
+\section{Compare the Two}
+
+A list comprehension:
+
+\begin{verbatim}
+[first_id + i
+ for i in range(len(names))]
+\end{verbatim}
+\noindent
+creates a sequence of student IDs.  A dictionary comprehension creates the ID-name pairs:
+
+\begin{verbatim}
+{first_id + i: name
+ for i, name in enumerate(names)}
+\end{verbatim}
+
+\section{Check Your Understanding}
+
+\begin{enumerate}
+\item Which comprehension creates only the student IDs?
+
+\item Which comprehension associates each ID with a name?
+
+\item Where do the names in the dictionary come from?
+
+\item Which part of the dictionary comprehension generates
+the ID?
+
+\item What would the ID for \texttt{"Diego"} be?
+
+\item If a sixth name is added to \texttt{names}, does either
+comprehension need to be rewritten? Explain.
+\end{enumerate}
+
+\end{document}

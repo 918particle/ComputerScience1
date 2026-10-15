@@ -1,0 +1,151 @@
+\documentclass{article}
+\usepackage[margin=1.5cm]{geometry}
+\usepackage{amsmath}
+\usepackage{enumitem}
+
+\setlist{nosep,leftmargin=*}
+
+\begin{document}
+\twocolumn
+
+\title{Chapter 11 Exercise: From Classes to Modules}
+\author{Prof. Jordan C. Hanson}
+\date{}
+
+\maketitle
+
+\section{Build the Module}
+
+Create a Python file named
+
+\begin{verbatim}
+complex_number.py
+\end{verbatim}
+
+Begin with the class from the warm-up:
+
+\begin{verbatim}
+class ComplexNumber:
+    def __init__(self, real, imag):
+        self.real = real
+        self.imag = imag
+    def __add__(self, other):
+        return ComplexNumber(
+            self.real + other.real,
+            self.imag + other.imag)
+    def __sub__(self, other):
+        return ComplexNumber(
+            self.real - other.real,
+            self.imag - other.imag)
+\end{verbatim}
+
+Each object represents
+
+\[
+z=a+bi.
+\]
+
+\section{Complex Multiplication}
+
+For
+
+\[
+z_1=a+bi,\qquad z_2=c+di,
+\]
+
+multiplication gives
+
+\[
+z_1z_2
+=(ac-bd)+(ad+bc)i.
+\]
+
+Add this method:
+
+\begin{verbatim}
+def __mul__(self, other):
+    real = self.real*other.real \
+         - self.imag*other.imag
+    imag = self.real*other.imag \
+         + self.imag*other.real
+    return ComplexNumber(real, imag)
+\end{verbatim}
+
+\section{Complex Conjugation}
+
+The \textbf{complex conjugate} changes the sign of the
+imaginary part:
+
+\[
+z=a+bi
+\qquad\Longrightarrow\qquad
+z^*=a-bi.
+\]
+
+Add
+
+\begin{verbatim}
+def conjugate(self):
+    return ComplexNumber(
+        self.real, -self.imag)
+\end{verbatim}
+
+\section{Complex Division}
+
+To divide complex numbers, use the following formula:
+
+\[
+\frac{a+bi}{c+di}
+=
+\frac{ac+bd}{c^2+d^2}
++
+\frac{bc-ad}{c^2+d^2}i.
+\]
+
+Add
+
+\begin{verbatim}
+def __truediv__(self, other):
+    den = other.real**2 \
+        + other.imag**2
+    real = (self.real*other.real \
+          + self.imag*other.imag)/den
+    imag = (self.imag*other.real \
+          - self.real*other.imag)/den
+    return ComplexNumber(real, imag)
+\end{verbatim}
+
+\section{Create \texttt{main.py}}
+
+In a second file, create
+
+\begin{verbatim}
+from complex_number import ComplexNumber
+z1 = ComplexNumber(3, 2)
+z2 = ComplexNumber(5, -4)
+z_add = z1 + z2
+z_sub = z1 - z2
+z_mul = z1 * z2
+z_div = z1 / z2
+z_conj = z1.conjugate()
+\end{verbatim}
+
+Print the real and imaginary parts:
+
+\begin{verbatim}
+print("Add:",
+      z_add.real, z_add.imag)
+print("Subtract:",
+      z_sub.real, z_sub.imag)
+print("Multiply:",
+      z_mul.real, z_mul.imag)
+print("Divide:",
+      z_div.real, z_div.imag)
+print("Conjugate:",
+      z_conj.real, z_conj.imag)
+\end{verbatim}
+
+Compare your hand calculations with the values printed by
+\texttt{main.py}.
+
+\end{document}
