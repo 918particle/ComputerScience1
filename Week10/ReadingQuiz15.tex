@@ -1,0 +1,126 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1.5cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage[T1]{fontenc}
+\setlength{\columnsep}{0.7cm}
+\setlength{\parindent}{0pt}
+\setlist{nosep,leftmargin=*}
+\lstset{
+  basicstyle=\ttfamily\scriptsize,
+  columns=fullflexible,
+  keepspaces=true,
+  aboveskip=2pt,
+  belowskip=2pt,
+  frame=single,
+  breaklines=true
+}
+
+\begin{document}
+\twocolumn
+
+\title{Chapter 12 Warm-Up: Recursion}
+\author{Prof. Jordan C. Hanson}
+\date{}
+
+\maketitle
+
+\section{Recursion with a List}
+Consider the list \\
+\begin{lstlisting}
+values = [7, 12, 4, 19, 3, 8, 15, 2, 11, 6, 14, 5]
+\end{lstlisting} \vspace{0.25cm}
+We want a function that returns \texttt{True} only when \emph{every} number in the list is positive.  First, recall that the following method acts on a list object: \\
+\begin{lstlisting}
+x = values.pop()
+\end{lstlisting}\vspace{0.25cm}
+After the statement runs, what value is stored in \texttt{x}, and what has happened to \texttt{values}?  In a recursive algorithm to solve this problem, each function call should examine one number, remove it, and then ask the \emph{same question} about the smaller list. Complete the function: \\
+\begin{lstlisting}
+def all_positive(values):
+    # Base case: no values remain
+    if ______________________:
+        return ______________
+
+    x = values.pop()
+
+    if ______________________:
+        return ______________
+
+    return all_positive(values)
+\end{lstlisting}\vspace{0.25cm}
+
+For \\
+\begin{lstlisting}
+test = [6, 2, 9, 4]
+print(all_positive(test))
+\end{lstlisting}\vspace{0.25cm}
+write the value removed at each recursive call:
+\[
+\underline{\hspace{0.7cm}}\;\rightarrow\;
+\underline{\hspace{0.7cm}}\;\rightarrow\;
+\underline{\hspace{0.7cm}}\;\rightarrow\;
+\underline{\hspace{0.7cm}}
+\]
+This exercise is called \textit{tracing the calls.}  What is returned when the list becomes empty? Now predict the result for \\
+\begin{lstlisting}
+test = [6, 2, -9, 4]
+\end{lstlisting}\vspace{0.25cm}
+At what point can the recursion stop early?
+
+\section{Recursive Factorial}
+For a positive integer \(n\), the factorial is
+\[
+n! = n(n-1)(n-2)\cdots 2\cdot 1.
+\]
+For example,
+\[
+6! = 6\cdot5\cdot4\cdot3\cdot2\cdot1 = 720.
+\]
+
+Factorial has a natural recursive definition:
+\[
+n! = n(n-1)!.
+\]
+To make the recursion stop, we also need a \textbf{base case}:
+\[
+0! = 1 \qquad \text{and} \qquad 1! = 1.
+\]
+
+Complete the recursive function: \\
+\begin{lstlisting}
+def factorial(n):
+    if ______________________:
+        return ______________
+
+    return ___________________
+\end{lstlisting}\vspace{0.25cm}
+
+Let us \textit{trace} an example.  Complete the expansion:
+\[
+\begin{aligned}
+6! &= 6(5!)\\
+   &= 6\cdot5(\underline{\hspace{0.45cm}}!)\\
+   &= 6\cdot5\cdot4(\underline{\hspace{0.45cm}}!)\\
+   &= \cdots\\
+   &= \underline{\hspace{2.0cm}}.
+\end{aligned}
+\]
+
+Identify the two parts of recursion:
+
+\begin{enumerate}
+\item What is the \textbf{base case} in \texttt{factorial()}?
+\item What is the \textbf{recursive case}?
+\item In each recursive call, how does the problem become smaller?
+\end{enumerate}
+
+\section{Challenge Problem}
+
+What should happen if a user calls \texttt{factorial(-3)}? Add one conditional that prevents the function from recursing forever on a negative input.
+
+\vfill
+\small\textbf{Key idea:} A recursive function must have a stopping case
+and a recursive step that moves toward that stopping case.
+
+\end{document}

@@ -1,0 +1,106 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1.5cm]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{array}
+\usepackage{fancyvrb}
+\setlength{\columnsep}{0.7cm}
+\setlist{nosep,leftmargin=*}
+\setlength{\parindent}{0pt}
+\pagestyle{empty}
+
+\begin{document}
+\twocolumn
+
+\title{In-Class Exercise: Recursive Binary Search}
+\author{Prof. Jordan C. Hanson}
+\date{\today}
+
+\maketitle
+
+\section{The Idea of Binary Search}
+Binary search finds a target in a \textbf{sorted} list by repeatedly checking the midpoint and discarding the half that cannot contain the target. Use the list
+\begin{verbatim}
+values = [3, 7, 11, 18, 23,
+          29, 34, 42, 47, 53,
+          61, 68, 74, 83, 91]
+\end{verbatim}
+The indices run from \(0\) through \(14\).  Suppose the target is \(74\). Initially,
+\[
+\texttt{low}=0,\qquad \texttt{high}=14.
+\]
+Compute the midpoint index with
+\[
+\texttt{mid}=\left\lfloor\frac{\texttt{low}+\texttt{high}}{2}\right\rfloor.
+\]
+
+The oddly shaped brackets indicate the \textit{floor function}, or ``rounding down.''  Complete the trace:
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{c|c|c|c|c}
+\textbf{low} & \textbf{high} & \textbf{mid} & \textbf{value} & \textbf{keep}\\ \hline
+0 & 14 & \rule{0.55cm}{0.15mm} & \rule{0.7cm}{0.15mm} & \rule{1.0cm}{0.15mm}\\
+\rule{0.5cm}{0.15mm} & \rule{0.5cm}{0.15mm} & \rule{0.55cm}{0.15mm} & \rule{0.7cm}{0.15mm} & \rule{1.0cm}{0.15mm}\\
+\rule{0.5cm}{0.15mm} & \rule{0.5cm}{0.15mm} & \rule{0.55cm}{0.15mm} & \rule{0.7cm}{0.15mm} & \rule{1.0cm}{0.15mm}\\
+\rule{0.5cm}{0.15mm} & \rule{0.5cm}{0.15mm} & \rule{0.55cm}{0.15mm} & \rule{0.7cm}{0.15mm} & \rule{1.0cm}{0.15mm}\\
+\end{tabular}
+\end{center}
+
+What index should the search return? \rule{1.2cm}{0.15mm}
+
+\section{Base Case and Recursive Cases}
+A recursive binary search keeps the original list and changes only the indices \texttt{low} and \texttt{high}. The \textbf{base case} for an unsuccessful search occurs when \texttt{low} $>$ \texttt{high}. There are then no indices left to search, so return \texttt{-1}.  If \texttt{values[mid]} equals the target, return \texttt{mid}. Otherwise: \\
+\begin{itemize}
+    \item if the target is smaller, search \texttt{low} through \texttt{mid-1};
+    \item if the target is larger, search \texttt{mid+1} through \texttt{high}.
+\end{itemize}
+
+\section{Complete the Recursive Function}
+Fill in the missing expressions.
+
+\begin{Verbatim}[fontsize=\small]
+def binary_search(values,target,low,high):
+    if ____________________:
+        return -1
+
+    mid = __________________
+
+    if values[mid] == target:
+        return ______________
+
+    if target < values[mid]:
+        return binary_search(values,target,low,____)
+
+    return binary_search(values,target,____,high)
+\end{Verbatim}
+
+Call the function using the entire list:
+\begin{Verbatim}[fontsize=\small]
+result = binary_search(values,74,0,len(values)-1)
+print(result)
+\end{Verbatim}
+
+Predict the output before running it: \rule{1.5cm}{0.15mm}
+
+\section{Search for a Missing Value}
+Now search for \(50\):
+\begin{verbatim}
+result = binary_search(values,50,0,len(values)-1)
+\end{verbatim}
+
+Trace the sequence of midpoint values examined.  What value should the function return?  Explain why \texttt{low > high} eventually becomes true:
+\vspace{1cm}
+
+
+\section{Why Binary Search Is Efficient}
+Each recursive call discards about half of the remaining search region.
+A list of roughly \(1024=2^{10}\) sorted values therefore needs at most
+about \(10\) midpoint decisions, rather than checking every value one at
+a time. \\
+
+\textbf{Question:} Why must the list be sorted for this method to work?
+\vspace{0.55cm}
+\hrule
+
+\end{document}

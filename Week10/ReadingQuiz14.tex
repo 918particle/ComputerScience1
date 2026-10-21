@@ -1,0 +1,152 @@
+\documentclass{article}
+\usepackage[margin=1.5cm]{geometry}
+\usepackage{amsmath}
+\usepackage{enumitem}
+
+\setlist{nosep,leftmargin=*}
+
+\begin{document}
+\twocolumn
+
+\title{Chapter 11 Warm-Up: A 2D Particle Class}
+\author{Prof. Jordan C. Hanson}
+\date{}
+
+\maketitle
+
+\section{A Moving Particle}
+
+A particle in two dimensions has position \((x,y)\) and velocity
+\((v_x,v_y)\).  For constant velocity over a time step \(\Delta t\),
+\[
+x_{\rm new}=x+v_x\Delta t,\qquad
+y_{\rm new}=y+v_y\Delta t.
+\]
+
+For
+\[
+(x,y)=(1,2),\qquad (v_x,v_y)=(3,-1),
+\]
+find the position after \(\Delta t=0.5\):
+\[
+x_{\rm new}=\underline{\hspace{1.1cm}},\qquad
+y_{\rm new}=\underline{\hspace{1.1cm}}.
+\]
+
+\section{Build the Class}
+
+Create a class that stores the particle's state:
+
+\begin{verbatim}
+class Particle2D:
+    def __init__(self,x,y,vx,vy):
+        self.x = x
+        self.y = y
+        self.vx = vx
+        self.vy = vy
+\end{verbatim}
+
+Create one particle:
+
+\begin{verbatim}
+p1 = Particle2D(1, 2, 3, -1)
+\end{verbatim}
+
+Identify the four instance attributes of \texttt{p1}.
+
+\section{Change the State}
+
+Add this method inside the class:
+
+\begin{verbatim}
+def update(self, dt):
+    self.x += self.vx * dt
+    self.y += self.vy * dt
+\end{verbatim}
+
+Then run
+
+\begin{verbatim}
+p1.update(0.5)
+print(p1.x, p1.y)
+\end{verbatim}
+
+Does the output agree with your hand calculation?  Why do
+\texttt{vx} and \texttt{vy} remain unchanged?
+
+\section{Advance Through Time}
+
+Reset the particle:
+
+\begin{verbatim}
+p1 = Particle2D(1, 2, 3, -1)
+
+dt = 0.1
+for i in range(10):
+    p1.update(dt)
+\end{verbatim}
+
+How much total time has passed?
+\[
+t=\underline{\hspace{1.2cm}}
+\]
+
+Predict the final position:
+\[
+x=\underline{\hspace{1.2cm}},\qquad
+y=\underline{\hspace{1.2cm}}.
+\]
+
+Print \texttt{p1.x} and \texttt{p1.y} to check.
+
+\section{Independent Objects}
+
+Create another particle:
+
+\begin{verbatim}
+p2 = Particle2D(-2, 0, 1, 2)
+\end{verbatim}
+
+Run
+
+\begin{verbatim}
+p1.update(0.5)
+p2.update(0.5)
+\end{verbatim}
+
+Why does updating \texttt{p1} not change \texttt{p2}?
+
+\medskip
+Each object has its own \textbf{state}: its own values of
+\texttt{x}, \texttt{y}, \texttt{vx}, and \texttt{vy}.
+
+\section{Challenge: A New Method}
+
+Add a method that returns
+\[
+v=\sqrt{v_x^2+v_y^2}.
+\]
+
+Begin the file with
+
+\begin{verbatim}
+import math
+\end{verbatim}
+
+and complete
+
+\begin{verbatim}
+def speed(self):
+    return ...
+\end{verbatim}
+
+Test it using
+
+\begin{verbatim}
+print(p1.speed())
+\end{verbatim}
+
+Why should \texttt{speed()} return a value while
+\texttt{update()} changes the object's state?
+
+\end{document}
