@@ -1,0 +1,325 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=0.75cm]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage[T1]{fontenc}
+
+\setlength{\columnsep}{0.7cm}
+\setlength{\parindent}{0pt}
+\setlist{nosep,leftmargin=*}
+
+\lstset{
+  basicstyle=\ttfamily\scriptsize,
+  columns=fullflexible,
+  keepspaces=true,
+  aboveskip=2pt,
+  belowskip=2pt,
+  frame=single,
+  breaklines=true
+}
+
+\begin{document}
+\twocolumn
+
+\begin{center}
+{\Large \textbf{Problem Set 7: Classes and Recursion}}\\[-1mm]
+COSC 120 -- Prof. Jordan C. Hanson
+\end{center}
+
+\textbf{Goal:} Review the class concepts from Chapter 11 and the
+recursive patterns from Chapter 12 using problems closely related to
+our warm-up and in-class exercises.
+
+\textbf{Submit:} Your Python files and a PDF containing the requested
+written answers, traces, and explanations.
+
+\section*{1. A 2D Particle Class}
+
+Create a module named
+
+\begin{lstlisting}
+particle2d.py
+\end{lstlisting}
+
+containing a class
+
+\begin{lstlisting}
+class Particle2D:
+\end{lstlisting}
+
+with the four instance attributes
+
+\[
+x,\qquad y,\qquad v_x,\qquad v_y.
+\]
+
+Your constructor should have the form
+
+\begin{lstlisting}
+def __init__(self, x, y, vx, vy):
+    ...
+\end{lstlisting}
+
+Add the following methods.
+
+\textbf{A. Update the particle state}
+
+\begin{lstlisting}
+def update(self, dt):
+    ...
+\end{lstlisting}
+
+Use
+
+\[
+x_{\rm new}=x+v_x\Delta t,
+\qquad
+y_{\rm new}=y+v_y\Delta t.
+\]
+
+The method should change the object's position but leave its velocity
+unchanged.
+
+\textbf{B. Return the particle speed}
+
+\begin{lstlisting}
+def speed(self):
+    ...
+\end{lstlisting}
+
+using
+
+\[
+v=\sqrt{v_x^2+v_y^2}.
+\]
+
+\textbf{C. Return the distance from the origin}
+
+Add
+
+\begin{lstlisting}
+def distance(self):
+    ...
+\end{lstlisting}
+
+using
+
+\[
+r=\sqrt{x^2+y^2}.
+\]
+
+Create a second file,
+
+\begin{lstlisting}
+test_particle.py
+\end{lstlisting}
+
+that imports the class and creates
+
+\begin{lstlisting}
+p1 = Particle2D(1, 2, 3, -1)
+p2 = Particle2D(-2, 0, 1, 2)
+\end{lstlisting}
+
+For each particle:
+
+\begin{enumerate}
+\item print its initial position, speed, and distance from the origin;
+\item call \texttt{update(0.5)};
+\item print its new position and distance.
+\end{enumerate}
+
+Explain briefly why updating \texttt{p1} does not change \texttt{p2}.
+
+\section*{2. Recursion with a List}
+
+Write a recursive function
+
+\begin{lstlisting}
+def all_nonnegative(values):
+    ...
+\end{lstlisting}
+
+that returns \texttt{True} only if every number in the list is greater
+than or equal to zero.
+
+Your function should follow the same recursive pattern used in class:
+
+\begin{itemize}
+\item the \textbf{base case} occurs when no values remain;
+\item examine one element using \texttt{pop()};
+\item if that element fails the test, stop immediately;
+\item otherwise call the same function on the smaller list.
+\end{itemize}
+
+Test the function using
+
+\begin{lstlisting}
+a = [4, 9, 0, 12, 3, 7]
+b = [4, 9, -2, 12, 3, 7]
+\end{lstlisting}
+
+Before running your code, predict the result for each list.
+
+Then answer:
+
+\begin{enumerate}
+\item What is the base case?
+\item How does each recursive call make the problem smaller?
+\item Why can the function stop early when a negative number is found?
+\end{enumerate}
+
+\section*{3. Recursive Factorial}
+
+Write
+
+\begin{lstlisting}
+def factorial(n):
+    ...
+\end{lstlisting}
+
+using recursion.
+
+Your function should use
+
+\[
+0! = 1
+\]
+
+as the base case and
+
+\[
+n! = n(n-1)!
+\]
+
+as the recursive case.
+
+\textbf{A.} Compute and print
+
+\begin{lstlisting}
+factorial(7)
+\end{lstlisting}
+
+\textbf{B.} Show the recursive expansion of \(5!\), beginning with
+
+\[
+5! = 5(4!)
+\]
+
+and continuing until the base case is reached.
+
+\textbf{C.} Add a conditional so that a negative input such as
+
+\begin{lstlisting}
+factorial(-3)
+\end{lstlisting}
+
+does not recurse forever. Your function may return \texttt{None} for a
+negative input.
+
+Explain why a recursive function needs a base case.
+
+\section*{4. Recursive Binary Search}
+
+Use the sorted list
+
+\begin{lstlisting}
+values = [2, 6, 9, 13, 18,
+          21, 27, 31, 36, 42,
+          48, 55, 63, 72, 84]
+\end{lstlisting}
+
+Write a recursive binary-search function
+
+\begin{lstlisting}
+def binary_search(values, target,
+                  low, high):
+    ...
+\end{lstlisting}
+
+that keeps the original list and changes only the indices
+\texttt{low} and \texttt{high}.
+
+Use
+
+\[
+\texttt{mid}
+=
+\left\lfloor
+\frac{\texttt{low}+\texttt{high}}{2}
+\right\rfloor.
+\]
+
+Your function must:
+
+\begin{itemize}
+\item return \texttt{-1} when \texttt{low > high};
+\item return \texttt{mid} when the target is found;
+\item recursively search the left half when the target is smaller;
+\item recursively search the right half when the target is larger.
+\end{itemize}
+
+\textbf{A. Search for a value that is present.}
+
+Call
+
+\begin{lstlisting}
+binary_search(
+    values, 63, 0, len(values)-1)
+\end{lstlisting}
+
+and record the index returned.
+
+Complete a trace with columns
+
+\[
+\texttt{low},\quad
+\texttt{high},\quad
+\texttt{mid},\quad
+\texttt{values[mid]},\quad
+\texttt{keep}.
+\]
+
+In the \texttt{keep} column, write \textbf{left}, \textbf{right}, or
+\textbf{found}.
+
+\textbf{B. Search for a missing value.}
+
+Call
+
+\begin{lstlisting}
+binary_search(
+    values, 50, 0, len(values)-1)
+\end{lstlisting}
+
+and record the sequence of midpoint values examined.
+
+What should the function return?
+
+\textbf{C. Explain the algorithm.}
+
+In two or three sentences, explain why binary search requires the list
+to be sorted and why it is more efficient than checking every element
+one at a time for a large sorted list.
+
+\section*{5. Files to Submit}
+
+Submit:
+
+\begin{lstlisting}
+particle2d.py
+test_particle.py
+recursion_tools.py
+problem_set_7.pdf
+\end{lstlisting}
+
+Place \texttt{all\_nonnegative()}, \texttt{factorial()}, and
+\texttt{binary\_search()} in \texttt{recursion\_tools.py}.
+
+Your PDF should contain the requested predictions, recursive traces,
+and short explanations.
+
+\end{document}

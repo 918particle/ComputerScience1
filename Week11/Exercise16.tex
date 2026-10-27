@@ -1,0 +1,134 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1.5cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{listings}
+\usepackage[T1]{fontenc}
+\setlength{\columnsep}{0.7cm}
+\setlength{\parindent}{0pt}
+\setlist{nosep,leftmargin=*}
+\lstset{
+  basicstyle=\ttfamily\scriptsize,
+  columns=fullflexible,
+  keepspaces=true,
+  aboveskip=2pt,
+  belowskip=2pt,
+  frame=single,
+  breaklines=true
+}
+
+\begin{document}
+\twocolumn
+
+\title{Chapter 13 In-Class Exercise: ComplexNumber Inheritance}
+\author{Prof. Jordan C. Hanson}
+\date{\today}
+\maketitle
+
+\section{Parent Class}
+
+Assume \texttt{vector2d.py} contains:
+
+\begin{verbatim}
+import math
+class Vector2D:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+    def magnitude(self):
+        return math.sqrt(self.x**2+self.y**2)
+    def angle(self):
+        return math.atan2(self.y,self.x)
+    def __add__(self, other):
+        return Vector2D(
+            self.x+other.x,self.y+other.y)
+    def __sub__(self, other):
+        return Vector2D(
+            self.x-other.x,self.y-other.y)
+\end{verbatim}
+
+A complex number \(z=a+jb\) also has two components. We will use $x\leftrightarrow a,\qquad y\leftrightarrow b$.
+
+\section{Create the Child Class}
+
+Create \texttt{complex\_number.py}:
+
+\begin{verbatim}
+from vector2d import Vector2D
+class ComplexNumber(Vector2D):
+    def __init__(self, real, imag):
+        super().__init__(____,____)
+\end{verbatim}
+
+The expression \texttt{ComplexNumber(Vector2D)} means that
+\texttt{ComplexNumber} \textbf{inherits} from \texttt{Vector2D}. Test:
+
+\begin{verbatim}
+z1 = ComplexNumber(3, 4)
+print(z1.magnitude())
+print(z1.angle())
+\end{verbatim}
+
+\section{Override Addition}
+
+Now try
+
+\begin{verbatim}
+z1 = ComplexNumber(3,2)
+z2 = ComplexNumber(5,-4)
+z3 = z1 + z2
+print(type(z3))
+\end{verbatim}
+
+The arithmetic is correct, but the inherited method returns a \texttt{Vector2D}. Override it:
+
+\begin{verbatim}
+def __add__(self, other):
+    return ComplexNumber(
+        self.x + other.x,
+        self.y + other.y)
+\end{verbatim}
+
+What should \texttt{type(z3)} give, if you recalculate $z1+z2$?  Override the subtraction method in the same way.
+
+\section{New Behavior: Multiplication}
+
+Complex multiplication is
+\[
+(a+jb)(c+jd)=(ac-bd)+(ad+bc)j.
+\]
+
+Add:
+
+\begin{verbatim}
+def __mul__(self, other):
+    real = ____
+    imag = ____
+    return ComplexNumber(real,imag)
+\end{verbatim}
+
+Test the new method.
+
+\section{Complex-Number Names}
+
+The parent stores \texttt{x} and \texttt{y}. Add:
+
+\begin{verbatim}
+def real(self):
+    return self.x
+def imag(self):
+    return self.y
+\end{verbatim}
+
+Then test
+
+\begin{verbatim}
+print(z1.real())
+print(z1.imag())
+\end{verbatim}
+
+\textbf{Key idea:} Inheritance reuses behavior; overriding replaces
+inherited behavior when the child class needs something different.
+
+\end{document}

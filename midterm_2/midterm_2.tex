@@ -1,0 +1,626 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1.35cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\usepackage{array}
+
+\setlength{\columnsep}{0.65cm}
+\setlength{\parindent}{0pt}
+\setlist[enumerate]{leftmargin=*,itemsep=0.35em,topsep=0.25em}
+
+% Multiple-choice bubble
+\newcommand{\choice}[2]{%
+    \par\noindent
+    \(\bigcirc\)\ \textbf{#1.}\ #2
+}
+
+% Compact answer-sheet bubble row
+% Reduced font size so A--D fit on one line in each table cell.
+\newcommand{\bubblecell}[1]{%
+    {\scriptsize
+    \textbf{#1}\;
+    \(\bigcirc\)A\;
+    \(\bigcirc\)B\;
+    \(\bigcirc\)C\;
+    \(\bigcirc\)D}%
+}
+
+\begin{document}
+
+\begin{center}
+{\Large\bfseries COSC 120: Introduction to Python Programming}\\[2pt]
+{\large\bfseries In-Class Midterm 2 Examination -- Version 3}\\[3pt]
+Prof. Jordan C. Hanson
+\end{center}
+
+\vspace{0.1cm}
+
+\noindent
+\textbf{Name:} \hrulefill
+\hspace{0.5cm}
+\textbf{Student ID:}
+\fbox{\rule{0pt}{1.8ex}\hspace{4cm}}
+
+\vspace{0.2cm}
+
+\noindent
+\textbf{Instructions:}
+Choose the best answer for each question.
+Fill in the circle next to exactly one answer, A--D.
+Each question is worth 4 points.
+
+\vspace{0.15cm}
+\hrule
+\vspace{0.2cm}
+
+\begin{center}
+{\large\bfseries Answer Sheet}
+\end{center}
+
+\small
+\renewcommand{\arraystretch}{1.3}
+
+\begin{center}
+\begin{tabular}{
+|m{0.18\textwidth}
+|m{0.18\textwidth}
+|m{0.18\textwidth}
+|m{0.18\textwidth}
+|m{0.18\textwidth}|}
+\hline
+\bubblecell{1} &
+\bubblecell{2} &
+\bubblecell{3} &
+\bubblecell{4} &
+\bubblecell{5} \\ \hline
+
+\bubblecell{6} &
+\bubblecell{7} &
+\bubblecell{8} &
+\bubblecell{9} &
+\bubblecell{10} \\ \hline
+
+\bubblecell{11} &
+\bubblecell{12} &
+\bubblecell{13} &
+\bubblecell{14} &
+\bubblecell{15} \\ \hline
+
+\bubblecell{16} &
+\bubblecell{17} &
+\bubblecell{18} &
+\bubblecell{19} &
+\bubblecell{20} \\ \hline
+
+\bubblecell{21} &
+\bubblecell{22} &
+\bubblecell{23} &
+\bubblecell{24} &
+\bubblecell{25} \\ \hline
+\end{tabular}
+\end{center}
+
+\normalsize
+
+\vspace{0.15cm}
+\hrule
+\vspace{0.25cm}
+
+\twocolumn
+
+%=========================================================
+\section*{Dictionaries and Comprehensions}
+
+\begin{enumerate}
+
+%---------------------------------------------------------
+% Question 1
+%---------------------------------------------------------
+\item Consider the dictionary
+
+\begin{verbatim}
+students = {
+    2601001: "Ana",
+    2601002: "Ben",
+    2601003: "Chloe"
+}
+\end{verbatim}
+
+What is produced by
+
+\begin{verbatim}
+students[2601002]
+\end{verbatim}
+
+\choice{A}{Ana}
+\choice{B}{Ben}
+\choice{C}{2601002}
+\choice{D}{An error occurs}
+
+%---------------------------------------------------------
+% Question 2
+%---------------------------------------------------------
+\item Suppose the key \texttt{2601999} is not in \texttt{students}. What is returned by
+
+\begin{verbatim}
+students.get(2601999)
+\end{verbatim}
+
+\choice{A}{0}
+\choice{B}{False}
+\choice{C}{None}
+\choice{D}{The program always stops with an error}
+
+%---------------------------------------------------------
+% Question 3
+%---------------------------------------------------------
+\item Consider
+
+\begin{verbatim}
+names = ["Ana", "Ben", "Chloe",
+         "Diego", "Elena"]
+first_id = 2601001
+students = {
+    first_id + i: name
+    for i, name in enumerate(names)
+}
+\end{verbatim}
+
+Which key is associated with \texttt{"Diego"}?
+
+\choice{A}{2601001}
+\choice{B}{2601002}
+\choice{C}{2601003}
+\choice{D}{2601004}
+
+%---------------------------------------------------------
+% Question 4
+%---------------------------------------------------------
+\item Which statement best describes the difference between these two expressions?
+
+\begin{verbatim}
+[first_id + i
+ for i in range(len(names))]
+
+{first_id + i: name
+ for i, name in enumerate(names)}
+\end{verbatim}
+
+\choice{A}{The first creates a list of IDs; the second creates ID--name pairs in a dictionary}
+\choice{B}{Both create dictionaries}
+\choice{C}{The first creates a dictionary; the second creates a list}
+\choice{D}{Both create exactly the same object}
+
+%---------------------------------------------------------
+% Question 5
+%---------------------------------------------------------
+\item In our lookup-timing exercise, why did we use
+
+\begin{verbatim}
+time.perf_counter()
+\end{verbatim}
+
+\choice{A}{To sort the student records}
+\choice{B}{To measure short execution times with a high-resolution timer}
+\choice{C}{To count how many dictionary keys exist}
+\choice{D}{To pause execution for a fixed number of seconds}
+
+%---------------------------------------------------------
+% Question 6
+%---------------------------------------------------------
+\item A student ID is near the end of a nested list containing \(N\) records. Which statement best describes our timing experiment as \(N\) becomes large?
+
+\choice{A}{Both nested-list and dictionary lookup times must grow in exactly the same way}
+\choice{B}{Dictionary lookup becomes impossible once \(N>1000\)}
+\choice{C}{Nested-list lookup generally grows with \(N\), while dictionary lookup changes much less}
+\choice{D}{Nested-list lookup becomes constant-time because the list is nested}
+
+\end{enumerate}
+
+%=========================================================
+\section*{Classes and Objects}
+
+\begin{enumerate}
+\setcounter{enumi}{6}
+
+%---------------------------------------------------------
+% Question 7
+%---------------------------------------------------------
+\item In a class definition, what is the main purpose of
+
+\begin{verbatim}
+def __init__(self, ...):
+\end{verbatim}
+
+\choice{A}{To initialize a new object's attributes}
+\choice{B}{To delete an object}
+\choice{C}{To import another module}
+\choice{D}{To begin a recursive call}
+
+%---------------------------------------------------------
+% Question 8
+%---------------------------------------------------------
+\item Inside an instance method, what does \texttt{self} refer to?
+
+\choice{A}{The class file on disk}
+\choice{B}{Every object that has ever been created}
+\choice{C}{The Python interpreter}
+\choice{D}{The particular object on which the method was called}
+
+%---------------------------------------------------------
+% Question 9
+%---------------------------------------------------------
+\item Consider the complete class fragment
+
+\begin{verbatim}
+class Particle2D:
+    def __init__(self, x, y, vx, vy):
+        self.x = x
+        self.y = y
+        self.vx = vx
+        self.vy = vy
+
+    def update(self, dt):
+        self.x += self.vx * dt
+        self.y += self.vy * dt
+
+p = Particle2D(1, 2, 3, -1)
+p.update(0.5)
+print(p.x, p.vx)
+\end{verbatim}
+
+What is printed?
+
+\choice{A}{\texttt{2.5 3}}
+\choice{B}{\texttt{2.5 1.5}}
+\choice{C}{\texttt{1 3}}
+\choice{D}{\texttt{4 -1}}
+
+% Question 10
+%---------------------------------------------------------
+\item Using the same \texttt{Particle2D} class, consider
+
+\begin{verbatim}
+p1 = Particle2D(0, 0, 2, 1)
+p2 = Particle2D(0, 0, -1, 3)
+
+p1.update(1.0)
+print(p2.x, p2.y)
+\end{verbatim}
+
+What is printed, and why?
+
+\choice{A}{\texttt{2 1}, because all instances share the same position}
+\choice{B}{\texttt{-1 3}, because creating \texttt{p2} automatically updates it}
+\choice{C}{\texttt{0 0}, because \texttt{update()} was called only on \texttt{p1}}
+\choice{D}{An error occurs because two instances cannot exist at once}
+
+% Question 11
+%---------------------------------------------------------
+\item A student writes the following method inside \\ \texttt{Particle2D}:
+
+\begin{verbatim}
+def speed(self):
+    return math.sqrt(vx**2 + vy**2)
+\end{verbatim}
+
+Why will this method fail when called as \texttt{p.speed()}?
+
+\choice{A}{The method should use \texttt{self.vx} and \texttt{self.vy}}
+\choice{B}{\texttt{math.sqrt()} cannot be used inside a class}
+\choice{C}{Instance methods cannot return values}
+\choice{D}{\texttt{speed()} must change \texttt{x} and \texttt{y}}
+
+% Question 12
+%---------------------------------------------------------
+\item Let
+
+\begin{verbatim}
+z1 = ComplexNumber(3, 2)
+z2 = ComplexNumber(5, -4)
+z3 = z1 + z2
+\end{verbatim}
+
+If \texttt{\_\_add\_\_()} correctly implements complex-number addition, and \texttt{z3.real} and \texttt{z3.imag} produce the real and imaginary parts of \texttt{z3}, what are \texttt{z3.real} and \texttt{z3.imag}?
+
+\choice{A}{\texttt{15, -8}}
+\choice{B}{\texttt{-2, 6}}
+\choice{C}{\texttt{8, 6}}
+\choice{D}{\texttt{8, -2}}
+
+%---------------------------------------------------------
+% Question 13
+%---------------------------------------------------------
+\item Consider the method
+
+\begin{verbatim}
+def __mul__(self, other):
+    real = (self.real * other.real
+            - self.imag * other.imag)
+    imag = (self.real * other.imag
+            + self.imag * other.real)
+    return ComplexNumber(real, imag)
+\end{verbatim}
+
+Which statement best describes what happens when Python evaluates
+\texttt{z3 = z1 * z2}?
+
+\choice{A}{A new \texttt{ComplexNumber} object is created and assigned to \texttt{z3}}
+\choice{B}{\texttt{z1} is permanently changed into the product}
+\choice{C}{The method returns a two-element list}
+\choice{D}{Python ignores \texttt{\_\_mul\_\_()} because \texttt{z1} and \texttt{z2} are objects}
+
+\end{enumerate}
+
+%=========================================================
+\section*{Recursion and Binary Search}
+
+\begin{enumerate}
+\setcounter{enumi}{13}
+
+%---------------------------------------------------------
+% Question 14
+%---------------------------------------------------------
+\item Which statement best defines a \textbf{base case} in a recursive function?
+
+\choice{A}{The first line of the function}
+\choice{B}{The case that makes the largest recursive call}
+\choice{C}{A stopping case that returns without making another recursive call}
+\choice{D}{A loop that always runs at least once}
+
+%---------------------------------------------------------
+% Question 15
+%---------------------------------------------------------
+\item Consider the recursive pattern from class:
+
+\begin{verbatim}
+def all_positive(values):
+    if len(values) == 0:
+        return True
+    x = values.pop()
+    if x <= 0:
+        return False
+    return all_positive(values)
+\end{verbatim}
+
+What is returned for
+
+\begin{verbatim}
+all_positive([6, 2, -9, 4])
+\end{verbatim}
+
+\choice{A}{False}
+\choice{B}{True}
+\choice{C}{-9}
+\choice{D}{None}
+
+%---------------------------------------------------------
+% Question 16
+%---------------------------------------------------------
+\item Consider
+
+\begin{verbatim}
+def fact(n):
+    if n <= 1:
+        return 1
+    return n * fact(n - 1)
+\end{verbatim}
+
+When evaluating \texttt{fact(4)}, which sequence of function calls is made before the base case returns?
+
+\choice{A}{\texttt{fact(4), fact(3), fact(2), fact(1)}}
+\choice{B}{\texttt{fact(4), fact(5), fact(6), ...}}
+\choice{C}{\texttt{fact(4)} only}
+\choice{D}{\texttt{fact(1), fact(2), fact(3), fact(4)}}
+
+% Question 17
+%---------------------------------------------------------
+\item A student writes
+
+\begin{verbatim}
+def fact(n):
+    if n <= 1:
+        return 1
+    return n * fact(n)
+\end{verbatim}
+
+Why does this implementation fail for \texttt{fact(5)}?
+
+\choice{A}{The base case should return 0}
+\choice{B}{The recursive call uses the same \texttt{n}, so it never moves toward the base case}
+\choice{C}{Multiplication is not allowed in a recursive function}
+\choice{D}{Recursive functions must contain a \texttt{for} loop}
+
+% Question 18
+%---------------------------------------------------------
+\item Consider this part of recursive binary search:
+
+\begin{verbatim}
+mid = (low + high) // 2
+
+if values[mid] == target:
+    return mid
+if target < values[mid]:
+    return binary_search(
+        values, target, low, mid - 1)
+return binary_search(
+    values, target, mid + 1, high)
+\end{verbatim}
+
+For
+
+\begin{verbatim}
+values = [3, 7, 11, 18, 23, 29, 34]
+target = 29
+low = 0
+high = 6
+\end{verbatim}
+
+the first midpoint is index 3, whose value is 18. What recursive call is made next?
+
+\choice{A}{\texttt{binary\_search(values, 29, 0, 2)}}
+\choice{B}{\texttt{binary\_search(values, 29, 4, 6)}}
+\choice{C}{\texttt{binary\_search(values, 29, 0, 6)}}
+\choice{D}{The function immediately returns \texttt{-1}}
+
+% Question 19
+%---------------------------------------------------------
+\item In our recursive binary-search function, what does
+
+\begin{verbatim}
+if low > high:
+    return -1
+\end{verbatim}
+
+mean?
+
+\choice{A}{There are no indices left to search, so the target is absent}
+\choice{B}{The target must be at index 0}
+\choice{C}{The list should be reversed}
+\choice{D}{The target has been found at \texttt{mid}}
+
+%---------------------------------------------------------
+% Question 20
+%---------------------------------------------------------
+\item Why is binary search efficient on a large sorted list?
+
+\choice{A}{It always examines every element exactly once}
+\choice{B}{It converts the list into a dictionary first}
+\choice{C}{It works only because recursive functions are always constant-time}
+\choice{D}{Each decision discards about half of the remaining search region}
+
+\end{enumerate}
+
+%=========================================================
+\section*{Inheritance and Vector2D}
+
+\begin{enumerate}
+\setcounter{enumi}{20}
+
+%---------------------------------------------------------
+% Question 21
+%---------------------------------------------------------
+\item Consider the class method
+
+\begin{verbatim}
+def __add__(self, other):
+    return Vector2D(
+        self.x + other.x,
+        self.y + other.y)
+\end{verbatim}
+
+and the code
+
+\begin{verbatim}
+v1 = Vector2D(2, 5)
+v2 = Vector2D(-1, 3)
+v3 = v1 + v2
+\end{verbatim}
+
+Which statement is correct?
+
+\choice{A}{\texttt{v3} is a \texttt{Vector2D} with components \texttt{(1, 8)}}
+\choice{B}{\texttt{v3} is the integer \texttt{9}}
+\choice{C}{\texttt{v1} is changed to \texttt{(-1, 3)}}
+\choice{D}{Python cannot use \texttt{+} with objects}
+
+% Question 22
+%---------------------------------------------------------
+\item Suppose \texttt{ComplexNumber} inherits from \texttt{Vector2D} and overrides only \texttt{\_\_add\_\_()}:
+
+\begin{verbatim}
+class ComplexNumber(Vector2D):
+    def __add__(self, other):
+        return ComplexNumber(
+            self.x + other.x,
+            self.y + other.y)
+\end{verbatim}
+
+If \texttt{Vector2D} already defines \texttt{magnitude()}, which methods are used by the following expressions?
+
+\begin{verbatim}
+z1.magnitude()
+z1 + z2
+\end{verbatim}
+
+\choice{A}{Both use methods defined only in \texttt{Vector2D}}
+\choice{B}{\texttt{magnitude()} is inherited from \texttt{Vector2D}; addition uses the overridden method in \texttt{ComplexNumber}}
+\choice{C}{Both require methods to be rewritten inside \texttt{ComplexNumber}}
+\choice{D}{\texttt{magnitude()} uses \texttt{ComplexNumber}; addition uses \texttt{Vector2D}}
+
+% Question 23
+%---------------------------------------------------------
+\item Consider
+
+\begin{verbatim}
+class ComplexNumber(Vector2D):
+    ...
+\end{verbatim}
+
+Which statement is correct?
+
+\choice{A}{\texttt{ComplexNumber} is a child class that inherits from \texttt{Vector2D}}
+\choice{B}{\texttt{Vector2D} inherits from \texttt{ComplexNumber}}
+\choice{C}{The two classes are unrelated}
+\choice{D}{Python combines the two classes into a dictionary}
+
+%---------------------------------------------------------
+% Question 24
+%---------------------------------------------------------
+\item In
+
+\begin{verbatim}
+def __init__(self, real, imag):
+    super().__init__(real, imag)
+\end{verbatim}
+
+what does \texttt{super().\_\_init\_\_()} do?
+
+\choice{A}{It creates an unrelated \texttt{Vector2D} object and discards it}
+\choice{B}{It calls the recursive base case}
+\choice{C}{It overrides every method in the parent class}
+\choice{D}{It reuses the parent class constructor to initialize the inherited components}
+
+%---------------------------------------------------------
+% Question 25
+%---------------------------------------------------------
+\item Suppose the parent and child classes contain
+
+\begin{verbatim}
+class Vector2D:
+    def __add__(self, other):
+        return Vector2D(
+            self.x + other.x,
+            self.y + other.y)
+
+class ComplexNumber(Vector2D):
+    def __add__(self, other):
+        return ComplexNumber(
+            self.x + other.x,
+            self.y + other.y)
+\end{verbatim}
+
+For two \texttt{ComplexNumber} objects \texttt{z1} and \texttt{z2}, what is the difference between
+
+\begin{verbatim}
+a = Vector2D.__add__(z1, z2)
+b = z1 + z2
+\end{verbatim}
+
+\choice{A}{Both \texttt{a} and \texttt{b} are \texttt{Vector2D} objects}
+\choice{B}{\texttt{a} is a \texttt{Vector2D}; \texttt{b} is a \texttt{ComplexNumber}}
+\choice{C}{\texttt{a} is a \texttt{ComplexNumber}; \texttt{b} is a \texttt{Vector2D}}
+\choice{D}{Both statements produce an error}
+
+\end{enumerate}
+
+\vfill
+
+\begin{center}
+\textbf{End of Exam}
+
+Check that exactly one answer is clearly marked for each question.
+\end{center}
+
+\end{document}
