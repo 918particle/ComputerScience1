@@ -1,0 +1,130 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1.5cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+
+\begin{document}
+\twocolumn
+
+\title{Chapter 14 In-Class Exercise: Reading Student Data from a File}
+\author{Prof. Jordan C. Hanson}
+\date{\today}
+\maketitle
+
+\section{A Simple Course Class}
+
+Suppose we want a \texttt{Course} object to store a course name and a list of students.
+
+\begin{verbatim}
+class Course:
+    def __init__(self, name):
+        self.name = name
+        self.students = []
+    def add_student(self,id,name):
+        self.students.append([id, name])
+\end{verbatim}
+
+Create the course:
+
+\begin{verbatim}
+course = Course("COSC 120")
+\end{verbatim}
+
+At this point, what is stored in \texttt{course.students}?
+
+\section{Student Data in a File}
+
+Create a text file named
+
+\begin{verbatim}
+students.txt
+\end{verbatim}
+
+containing
+
+\begin{verbatim}
+2601001,Ana
+2601002,Ben
+2601003,Chloe
+2601004,Diego
+2601005,Elena
+\end{verbatim}
+
+\section{Open and Read the File}
+
+Python can open a file with
+
+\begin{verbatim}
+with open("students.txt", "r") as f:
+\end{verbatim}
+
+The \texttt{"r"} means \textbf{read mode}.
+
+Complete the loop:
+
+\begin{verbatim}
+with open("students.txt", "r") as f:
+    for line in f:
+        id, name = line.strip().split(",")
+        course.add_student(int(id),name)
+\end{verbatim}
+
+\vspace{0.3cm}
+
+\section{Examine the Course Object}
+
+After the file has been read, run
+
+\begin{verbatim}
+print(course.name)
+print(course.students)
+\end{verbatim}
+
+How many student records should now be stored?  Now print them one at a time:
+
+\begin{verbatim}
+for student in course.students:
+    print(student)
+\end{verbatim}
+
+\section{Add a Useful Method}
+
+Add this method to \texttt{Course}:
+
+\begin{verbatim}
+def number_of_students(self):
+    return len(self.students)
+\end{verbatim}
+
+Then run
+
+\begin{verbatim}
+print(course.number_of_students())
+\end{verbatim}
+
+What should be printed?
+
+\section{Your Turn}
+
+Add another line to \texttt{students.txt}:
+
+\begin{verbatim}
+2601006,Fatima
+\end{verbatim}
+
+Run the program again.
+
+\begin{enumerate}
+\item Does the Python code need to be changed?
+\item How many records are now stored?
+\item Why is reading data from a file more useful than typing every
+student directly into the Python program?
+\end{enumerate}
+
+\vspace{0.25cm}
+\noindent
+\textbf{Key idea:} The file stores the \emph{data}; the
+\texttt{Course} class stores and organizes that data after Python
+reads it.
+
+\end{document}
